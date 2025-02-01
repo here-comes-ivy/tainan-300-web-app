@@ -7,10 +7,12 @@ import 'reusableStyles.dart';
 
 class ReusableButtons {
   Widget buildDismissButton(context) {
+
+    FlutterLineLiff flutterlineliff = FlutterLineLiff();
     return FilledButton(
       style: filledButtonStyle,
       onPressed: () {
-        Navigator.of(context).pop();
+        flutterlineliff.closeWindow;
       },
       child: const Text('Dismiss'),
     );
