@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'landingPage.dart';
 import 'package:flutter_line_liff/flutter_line_liff.dart';
 import 'service_liff/globalLiffData.dart';
 import 'package:firebase_core/firebase_core.dart';

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_line_liff/flutter_line_liff.dart' as line_liff;
-import 'widget_landingPage/landingPage_checkInDialog.dart';
 import 'service_liff/globalLiffData.dart';
-import 'checkIn_message.dart';
-import 'reusableButtons.dart';
+import 'components/checkIn_message.dart';
+import 'components/reusableButtons.dart';
 
 class MaplessPage extends StatefulWidget {
   @override

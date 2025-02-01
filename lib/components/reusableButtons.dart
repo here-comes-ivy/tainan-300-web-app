@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_line_liff/flutter_line_liff.dart';
-import '../service_liff/liff_service.dart';
-import '../service_liff/globalLiffData.dart';
+import '../../service_liff/liff_service.dart';
+import '../../service_liff/globalLiffData.dart';
 import 'reusableStyles.dart';
 
 class ReusableButtons {
