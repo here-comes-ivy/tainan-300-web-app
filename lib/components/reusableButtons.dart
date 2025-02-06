@@ -6,20 +6,49 @@ import '../../service_liff/globalLiffData.dart';
 import 'reusableStyles.dart';
 
 class ReusableButtons {
-  Widget buildDismissButton(context) {
 
+  Widget buildButton(
+      {required String text, required Function() onPressed, context}) {
     return FilledButton(
-      style: filledButtonStyle,
+      style: FilledButton.styleFrom(
+        shadowColor: Colors.grey,
+        backgroundColor: const Color.fromRGBO(218, 188, 76, 1),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(6),
+        ),
+      ),
+      onPressed: onPressed,
+      child: Text(text, style: TextStyle(fontSize: 14, color: Colors.white, fontWeight: FontWeight.bold)),
+    );
+  }
+
+    Widget buildCopyAndRedirectButton({required String password}) {
+    return buildButton(
+      onPressed: () async {
+        Clipboard.setData(ClipboardData(text: password));
+        FlutterLineLiff().openWindow(
+          params: OpenWindowParams(
+            url: 'https://line.me/R/ti/p/%40608iawcf#~',
+            external: false,
+          ),
+        );
+      },
+      text: '領獎去',
+    );
+  }
+
+
+  Widget buildDismissButton(context) {
+    return buildButton(
       onPressed: () {
         FlutterLineLiff().closeWindow();
       },
-      child: const Text('Dismiss'),
+      text: 'Dismiss',
     );
   }
 
   Widget buildSendMessageButton(context) {
-    return FilledButton(
-      style: filledButtonStyle,
+    return buildButton(
       onPressed: () async {
         final liffService = LiffService();
         bool success = await liffService.sendUserMessage();
@@ -37,23 +66,9 @@ class ReusableButtons {
           ),
         );
       },
-      child: const Text('Send Message'),
+      text: 'Send Message',
     );
   }
 
-  Widget buildCopyAndRedirectButton(String password) {
-    return FilledButton(
-      style:filledButtonStyle,
-      onPressed: () async {
-        Clipboard.setData(ClipboardData(text: password));
-        FlutterLineLiff().openWindow(
-          params: OpenWindowParams(
-            url: 'https://line.me/R/ti/p/%40608iawcf#~',
-            external: false,
-          ),
-        );
-      },
-      child: const Text('Copy and Redirect'),
-    );
-  }
+
 }

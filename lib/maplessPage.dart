@@ -4,6 +4,9 @@ import 'package:flutter_line_liff/flutter_line_liff.dart' as line_liff;
 import 'service_liff/globalLiffData.dart';
 import 'components/checkIn_message.dart';
 import 'components/reusableButtons.dart';
+import 'package:flutter_line_liff/flutter_line_liff.dart';
+import 'package:flutter/services.dart';
+import 'components/warning_message.dart';
 
 class MaplessPage extends StatefulWidget {
   @override
@@ -24,7 +27,11 @@ class _MaplessPageState extends State<MaplessPage> {
 
   @override
   Widget build(BuildContext context) {
-    ReusableButtons textButtons = ReusableButtons();
+    ReusableButtons reusableButtons = ReusableButtons();
+    final String userName = GlobalLiffData.userName ?? '匿名用戶';
+    final String userPhoto =
+        GlobalLiffData.userPhotoUrl ?? 'assets/images/defaultProfilePic.png';
+    final String password = GlobalLiffData.password ?? '未知密碼';
 
     return Scaffold(
       body: FutureBuilder<void>(
@@ -34,26 +41,82 @@ class _MaplessPageState extends State<MaplessPage> {
             return Center(child: CircularProgressIndicator());
           } else {
             return Scaffold(
+              appBar: AppBar(
+                backgroundColor: Colors.white,
+                shadowColor: Colors.black.withValues(alpha: 0.2),
+                elevation: 10,
+                leading: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: CircleAvatar(
+                    radius: 30,
+                    foregroundImage: NetworkImage(userPhoto),
+                  ),
+                ),
+                title: Text('「一府 x iF」遊城活動打卡'),
+                shape: Border(
+                    bottom: BorderSide(color: Colors.blueGrey, width: 2)),
+              ),
               body: SafeArea(
                 child: Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(40.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SizedBox(height: 20),
+                      Row(
+                        children: [
+                          CircleAvatar(
+                            radius: 20,
+                            foregroundImage: NetworkImage(userPhoto),
+                            backgroundColor: Colors.grey,
+                          ),
+                          SizedBox(width: 10),
+                          Text(
+                            userName,
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 10),
                       CheckinMessage(),
+                      SizedBox(height: 10),
+                      Image.asset('assets/images/iF300eventMap.jpg',
+                          height: 280, width: double.infinity),
                       SizedBox(height: 20),
-                      buttonSizedBox(
-                        textButtons.buildDismissButton(context),
-                      ),
-                      SizedBox(height: 20),
-                      buttonSizedBox(
-                        textButtons.buildSendMessageButton(context),
-                      ),
-                      SizedBox(height: 20),
-                      buttonSizedBox(
-                        textButtons.buildCopyAndRedirectButton(
-                            GlobalLiffData.password ?? 'Unknown Password'),
+                      IntrinsicHeight(
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          spacing: 10,
+                          children: [
+                            Flexible(
+                              flex: 1,
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(vertical: 6),
+                                child:
+                                    reusableButtons.buildCopyAndRedirectButton(
+                                        password: password),
+                              ),
+                            ),
+                            Flexible(
+                              flex: 3,
+                                child: FittedBox(
+                                fit: BoxFit.scaleDown,
+                                child: Container(
+                                  constraints: BoxConstraints(
+                                  maxWidth: MediaQuery.of(context).size.width,
+                                  ),
+                                  padding: EdgeInsets.symmetric(
+                                    vertical: 10, horizontal: 8),
+                                  decoration: BoxDecoration(
+                                  shape: BoxShape.rectangle,
+                                  color: Color.fromRGBO(254, 248, 227, 1),
+                                  borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: WarningMessage(),
+                                ),
+                                ),
+                            )
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -64,9 +127,5 @@ class _MaplessPageState extends State<MaplessPage> {
         },
       ),
     );
-  }
-
-  Widget buttonSizedBox(Widget child) {
-    return SizedBox(width: double.infinity, height: 50, child: child);
   }
 }

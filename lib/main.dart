@@ -55,16 +55,16 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        useMaterial3: true,
-        //scaffoldBackgroundColor: const Color(0xFFCBAA39),  // 修正顏色值格式
+        //useMaterial3: true,
+        scaffoldBackgroundColor: Colors.white,  // 修正顏色值格式
         //scaffoldBackgroundColor: const Color.fromRGBO(242, 239, 233, 1),
         // textTheme: Theme.of(context).textTheme.apply(
         //       bodyColor: const Color(0xFF507166), // 修正顏色值格式
         //       displayColor: const Color(0xFF507166), // 修正顏色值格式
         //     ),
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.white,
-        ),
+        // colorScheme: ColorScheme.fromSeed(
+        //   seedColor: Colors.white,
+        // ),
       ),
       home: MaplessPage(),
     );

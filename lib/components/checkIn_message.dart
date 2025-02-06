@@ -25,14 +25,31 @@ class _CheckinMessageState extends State<CheckinMessage> {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Hello $userName!', style: TextStyle(fontWeight: FontWeight.bold)),
-        Text('恭喜你成功取得「$landmark」的通關密碼：'),
+        Text.rich(
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          TextSpan(
+            children: [
+              TextSpan(
+                text: '恭喜你成功取得',
+              ),
+              TextSpan(
+                text: landmark,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              TextSpan(
+                text: '的通關密碼：',
+              ),
+            ],
+          ),
+        ),
         Row(
           children: [
-            Text('$password', style: TextStyle(fontWeight: FontWeight.bold)),
+            Text('$password', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             SizedBox(width: 10),
             IconButton(
-              icon: Icon(Icons.copy),
+              icon: Icon(Icons.copy, color: Colors.grey),
               onPressed: () {
                 Clipboard.setData(ClipboardData(text: password));
                 ScaffoldMessenger.of(context).showSnackBar(
@@ -45,8 +62,8 @@ class _CheckinMessageState extends State<CheckinMessage> {
             ),
           ],
         ),
-        Text('在官方聊天室輸入通關密語並送出訊息後，即可累積寶石或取得獎勵。'),
-        Text('請務必在 $dateTime 前完成通關，逾時將無法獲得獎勵。'),
+        // Text('在官方聊天室輸入通關密語並送出訊息後，即可累積寶石或取得獎勵。'),
+        // Text('請務必在 $dateTime 前完成通關，逾時將無法獲得獎勵。'),
       ],
     );
   }
