@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_line_liff/flutter_line_liff.dart' as line_liff;
 import 'service_liff/globalLiffData.dart';
 import 'components/checkIn_message.dart';
-import 'components/reusableButtons.dart';
+import 'components/redirect_button.dart';
 import 'package:flutter_line_liff/flutter_line_liff.dart';
 import 'package:flutter/services.dart';
 import 'components/warning_message.dart';
@@ -27,12 +27,6 @@ class _MaplessPageState extends State<MaplessPage> {
 
   @override
   Widget build(BuildContext context) {
-    ReusableButtons reusableButtons = ReusableButtons();
-    final String userName = GlobalLiffData.userName ?? '匿名用戶';
-    final String userPhoto =
-        GlobalLiffData.userPhotoUrl ?? 'assets/images/defaultProfilePic.png';
-    final String password = GlobalLiffData.password ?? '未知密碼';
-
     return Scaffold(
       body: FutureBuilder<void>(
         future: _initDataFuture,
@@ -40,16 +34,19 @@ class _MaplessPageState extends State<MaplessPage> {
           if (!GlobalLiffData.isInitialized) {
             return Center(child: CircularProgressIndicator());
           } else {
+            final String userName = GlobalLiffData.userName ?? '匿名用戶';
+            final String userPhoto = GlobalLiffData.userPhotoUrl ??
+                'assets/images/defaultProfilePic.png';
+            final String password = GlobalLiffData.password ?? '未知密碼';
+
             return Scaffold(
               appBar: AppBar(
-                backgroundColor: Colors.white,
-                shadowColor: Colors.black.withValues(alpha: 0.2),
-                elevation: 10,
                 leading: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: CircleAvatar(
                     radius: 30,
-                    foregroundImage: NetworkImage(userPhoto),
+                    foregroundImage:
+                        AssetImage('assets/images/defaultProfilePic.png'),
                   ),
                 ),
                 title: Text('「一府 x iF」遊城活動打卡'),
@@ -59,66 +56,68 @@ class _MaplessPageState extends State<MaplessPage> {
               body: SafeArea(
                 child: Padding(
                   padding: const EdgeInsets.all(40.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Row(
-                        children: [
-                          CircleAvatar(
-                            radius: 20,
-                            foregroundImage: NetworkImage(userPhoto),
-                            backgroundColor: Colors.grey,
-                          ),
-                          SizedBox(width: 10),
-                          Text(
-                            userName,
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 10),
-                      CheckinMessage(),
-                      SizedBox(height: 10),
-                      Image.asset('assets/images/iF300eventMap.jpg',
-                          height: 280, width: double.infinity),
-                      SizedBox(height: 20),
-                      IntrinsicHeight(
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          spacing: 10,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Row(
                           children: [
-                            Flexible(
-                              flex: 1,
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(vertical: 6),
-                                child:
-                                    reusableButtons.buildCopyAndRedirectButton(
-                                        password: password),
-                              ),
+                            CircleAvatar(
+                              radius: 20,
+                              foregroundImage: NetworkImage(userPhoto),
+                              backgroundColor: Colors.grey,
                             ),
-                            Flexible(
-                              flex: 3,
-                                child: FittedBox(
-                                fit: BoxFit.scaleDown,
-                                child: Container(
-                                  constraints: BoxConstraints(
-                                  maxWidth: MediaQuery.of(context).size.width,
-                                  ),
-                                  padding: EdgeInsets.symmetric(
-                                    vertical: 10, horizontal: 8),
-                                  decoration: BoxDecoration(
-                                  shape: BoxShape.rectangle,
-                                  color: Color.fromRGBO(254, 248, 227, 1),
-                                  borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  child: WarningMessage(),
-                                ),
-                                ),
-                            )
+                            SizedBox(width: 10),
+                            Text(
+                              userName,
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold),
+                            ),
                           ],
                         ),
-                      ),
-                    ],
+                        SizedBox(height: 10),
+                        CheckinMessage(),
+                        SizedBox(height: 10),
+                        Image.asset('assets/images/iF300eventMap.jpg',
+                            height: 280, width: double.infinity),
+                        SizedBox(height: 10),
+                        IntrinsicHeight(
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            spacing: 10,
+                            children: [
+                              Flexible(
+                                flex: 1,
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 6),
+                                  child: RedirectButton(),
+                                ),
+                              ),
+                              Flexible(
+                                flex: 3,
+                                child: FittedBox(
+                                  fit: BoxFit.scaleDown,
+                                  child: Container(
+                                    constraints: BoxConstraints(
+                                      maxWidth:
+                                          MediaQuery.of(context).size.width,
+                                    ),
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: 10, horizontal: 8),
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.rectangle,
+                                      color: Color.fromRGBO(254, 248, 227, 1),
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    child: WarningMessage(),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

@@ -15,7 +15,7 @@ class _CheckinMessageState extends State<CheckinMessage> {
 
   String landmark = GlobalLiffData.landmarkName ?? 'Unknown Landmark';
 
-  String password = GlobalLiffData.password ?? 'Unknown Password';
+  String password = GlobalLiffData.password;
 
   String dateTime = DateFormat('yyyy-MM-dd kk:mm').format(DateTime.now());
 
@@ -30,7 +30,7 @@ class _CheckinMessageState extends State<CheckinMessage> {
           TextSpan(
             children: [
               TextSpan(
-                text: '恭喜你成功取得',
+                text: '恭喜你成功取得 ',
               ),
               TextSpan(
                 text: landmark,
@@ -39,7 +39,7 @@ class _CheckinMessageState extends State<CheckinMessage> {
                 ),
               ),
               TextSpan(
-                text: '的通關密碼：',
+                text: ' 的通關密碼：',
               ),
             ],
           ),

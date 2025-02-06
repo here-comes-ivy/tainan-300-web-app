@@ -29,7 +29,7 @@ class GlobalLiffData {
   static List<Map<String, dynamic>> allLandmarkDetails = [];
   static Map<String, dynamic> landmarkDetails = {};
   static String? landmarkName;
-  static String? password;
+  static String password  = '未知密碼';
   static LatLng? landmarkLatLng;
   static String? landmarkPictureUrl;
   static String? landmarkInfoTitle;

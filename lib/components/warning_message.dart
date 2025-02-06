@@ -12,11 +12,11 @@ class _WarningMessageState extends State<WarningMessage> {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Icon(Icons.error),
+        Icon(Icons.error, color: Colors.grey[700]),
         SizedBox(width: 6),
         Expanded(
           child: Text.rich(
-            style: TextStyle(fontSize: 14, color: Colors.black),
+            style: TextStyle(color: Colors.grey[700] , fontSize: 14,),
             textAlign: TextAlign.left,
             overflow: TextOverflow.visible,
             TextSpan(

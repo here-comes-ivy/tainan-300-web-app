@@ -2,17 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_line_liff/flutter_line_liff.dart';
 import '../../service_liff/liff_service.dart';
-import '../../service_liff/globalLiffData.dart';
-import 'reusableStyles.dart';
 
 class ReusableButtons {
+
+  final filledButtonStyle = FilledButton.styleFrom(
+  shape: RoundedRectangleBorder(
+    borderRadius: BorderRadius.zero,
+  ),
+);
 
   Widget buildButton(
       {required String text, required Function() onPressed, context}) {
     return FilledButton(
       style: FilledButton.styleFrom(
         shadowColor: Colors.grey,
-        backgroundColor: const Color.fromRGBO(218, 188, 76, 1),
+        backgroundColor: Theme.of(context).primaryColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(6),
         ),
