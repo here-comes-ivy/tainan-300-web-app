@@ -35,6 +35,7 @@ class _RedirectButtonState extends State<RedirectButton> {
       },
       child: Text('領獎去',
           style: TextStyle(
+              overflow: TextOverflow.visible,
               fontSize: 14, color: Colors.white, fontWeight: FontWeight.bold)),
     );
   }

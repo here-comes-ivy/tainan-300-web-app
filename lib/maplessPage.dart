@@ -75,12 +75,9 @@ class _MaplessPageState extends State<MaplessPage> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 10),
                         CheckinMessage(),
-                        SizedBox(height: 10),
                         Image.asset('assets/images/iF300eventMap.jpg',
                             height: 280, width: double.infinity),
-                        SizedBox(height: 10),
                         IntrinsicHeight(
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -97,20 +94,7 @@ class _MaplessPageState extends State<MaplessPage> {
                                 flex: 3,
                                 child: FittedBox(
                                   fit: BoxFit.scaleDown,
-                                  child: Container(
-                                    constraints: BoxConstraints(
-                                      maxWidth:
-                                          MediaQuery.of(context).size.width,
-                                    ),
-                                    padding: EdgeInsets.symmetric(
-                                        vertical: 10, horizontal: 8),
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.rectangle,
-                                      color: Color.fromRGBO(254, 248, 227, 1),
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-                                    child: WarningMessage(),
-                                  ),
+                                  child: WarningMessage(),
                                 ),
                               )
                             ],

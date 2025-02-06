@@ -74,6 +74,7 @@ class _MyAppState extends State<MyApp> {
             fontWeight: FontWeight.bold,
           ),
         ),
+        splashColor: const Color(0xFF507166),
         // colorScheme: ColorScheme.fromSeed(
         //   seedColor: Colors.white,
         // ),
