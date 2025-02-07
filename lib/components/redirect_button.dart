@@ -34,9 +34,12 @@ class _RedirectButtonState extends State<RedirectButton> {
         );
       },
       child: Text('領獎去',
+          softWrap: false,
           style: TextStyle(
+              fontSize: 14,
               overflow: TextOverflow.visible,
-              fontSize: 14, color: Colors.white, fontWeight: FontWeight.bold)),
+              color: Colors.white,
+              fontWeight: FontWeight.bold)),
     );
   }
 }

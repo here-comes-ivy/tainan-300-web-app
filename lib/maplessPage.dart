@@ -55,10 +55,16 @@ class _MaplessPageState extends State<MaplessPage> {
               ),
               body: SafeArea(
                 child: Padding(
-                  padding: const EdgeInsets.all(40.0),
+                  padding: EdgeInsets.symmetric(
+                    horizontal:
+                        MediaQuery.of(context).size.width > 600 ? 40.0 : 20.0,
+                    vertical:
+                        MediaQuery.of(context).size.width > 600 ? 40.0 : 16.0,
+                  ),
                   child: SingleChildScrollView(
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.start, // 改為從頂部開始排列
+                      mainAxisSize: MainAxisSize.min,
                       children: [
                         Row(
                           children: [
@@ -76,8 +82,17 @@ class _MaplessPageState extends State<MaplessPage> {
                           ],
                         ),
                         CheckinMessage(),
-                        Image.asset('assets/images/iF300eventMap.jpg',
-                            height: 280, width: double.infinity),
+                        AspectRatio(
+                          aspectRatio: 16 / 9,
+                          child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            child: Image.asset(
+                              'assets/images/iF300eventMap.jpg',
+                              fit: BoxFit.cover, // 或使用 contain，視需求而定
+                            ),
+                          ),
+                        ),
+                        
                         IntrinsicHeight(
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.stretch,
