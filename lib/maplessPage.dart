@@ -7,22 +7,46 @@ import 'components/redirect_button.dart';
 import 'package:flutter_line_liff/flutter_line_liff.dart';
 import 'package:flutter/services.dart';
 import 'components/warning_message.dart';
+import 'package:lottie/lottie.dart';
 
 class MaplessPage extends StatefulWidget {
   @override
   State<MaplessPage> createState() => _MaplessPageState();
 }
 
-class _MaplessPageState extends State<MaplessPage> {
+class _MaplessPageState extends State<MaplessPage> with SingleTickerProviderStateMixin {
   late Future<void> _initDataFuture;
+
+  bool _showAnimation = true; // 控制動畫顯示
+  late AnimationController _animationController;
+
   @override
   void initState() {
     super.initState();
     _initDataFuture = _initializeData();
+
+    _animationController = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 3), // 設置動畫持續時間
+    );
+
+    _animationController.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        setState(() {
+          _showAnimation = false; // 動畫完成後隱藏
+        });
+      }
+    });
   }
 
   Future<void> _initializeData() async {
     await GlobalLiffData.getAllLiffData();
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
   }
 
   @override
@@ -32,7 +56,22 @@ class _MaplessPageState extends State<MaplessPage> {
         future: _initDataFuture,
         builder: (context, snapshot) {
           if (!GlobalLiffData.isInitialized) {
-            return Center(child: CircularProgressIndicator(color: ThemeData().primaryColor), );
+            // return Center(
+            //   child: CircularProgressIndicator(color: ThemeData().primaryColor),
+            // );
+          // } else if (_showAnimation) {
+            return Container(
+              color: Colors.transparent, 
+              child: Center(
+                child: Lottie.asset(
+                  'assets/animations/animation.json', 
+                  controller: _animationController,
+                  onLoaded: (composition) {
+                    _animationController.forward();
+                  },
+                ),
+              ),
+            );
           } else {
             final String userName = GlobalLiffData.userName ?? '匿名用戶';
             final String userPhoto = GlobalLiffData.userPhotoUrl ??
@@ -91,7 +130,6 @@ class _MaplessPageState extends State<MaplessPage> {
                             ),
                           ),
                         ),
-                        
                         IntrinsicHeight(
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.stretch,
