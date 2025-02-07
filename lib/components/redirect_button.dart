@@ -16,9 +16,11 @@ class _RedirectButtonState extends State<RedirectButton> {
   Widget build(BuildContext context) {
     final String password = GlobalLiffData.password;
 
-    return FilledButton(
-      style: FilledButton.styleFrom(
+    return ElevatedButton(
+
+      style: ElevatedButton.styleFrom(
         shadowColor: Colors.grey,
+        elevation: 5,
         backgroundColor: Theme.of(context).primaryColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(6),

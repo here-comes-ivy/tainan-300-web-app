@@ -32,12 +32,11 @@ class _MaplessPageState extends State<MaplessPage> {
         future: _initDataFuture,
         builder: (context, snapshot) {
           if (!GlobalLiffData.isInitialized) {
-            return Center(child: CircularProgressIndicator());
+            return Center(child: CircularProgressIndicator(color: ThemeData().primaryColor), );
           } else {
             final String userName = GlobalLiffData.userName ?? '匿名用戶';
             final String userPhoto = GlobalLiffData.userPhotoUrl ??
                 'assets/images/defaultProfilePic.png';
-            final String password = GlobalLiffData.password ?? '未知密碼';
 
             return Scaffold(
               appBar: AppBar(
