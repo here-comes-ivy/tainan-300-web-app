@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_line_liff/flutter_line_liff.dart' as line_liff;
 import 'service_liff/globalLiffData.dart';
 import 'components/checkIn_message.dart';
 import 'components/redirect_button.dart';
@@ -56,41 +55,15 @@ class _MaplessPageState extends State<MaplessPage> with SingleTickerProviderStat
         future: _initDataFuture,
         builder: (context, snapshot) {
           if (!GlobalLiffData.isInitialized) {
-            // return Center(
-            //   child: CircularProgressIndicator(color: ThemeData().primaryColor),
-            // );
-          // } else if (_showAnimation) {
-            return Container(
-              color: Colors.transparent, 
-              child: Center(
-                child: Lottie.asset(
-                  'assets/animations/animation.json', 
-                  controller: _animationController,
-                  onLoaded: (composition) {
-                    _animationController.forward();
-                  },
-                ),
-              ),
-            );
+              return Center(
+                child: CircularProgressIndicator(color: ThemeData().primaryColor),
+              );
           } else {
             final String userName = GlobalLiffData.userName ?? '匿名用戶';
             final String userPhoto = GlobalLiffData.userPhotoUrl ??
                 'assets/images/defaultProfilePic.png';
 
             return Scaffold(
-              appBar: AppBar(
-                leading: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: CircleAvatar(
-                    radius: 30,
-                    foregroundImage:
-                        AssetImage('assets/images/defaultProfilePic.png'),
-                  ),
-                ),
-                title: Text('「一府 x iF」遊城活動打卡'),
-                shape: Border(
-                    bottom: BorderSide(color: Colors.blueGrey, width: 2)),
-              ),
               body: SafeArea(
                 child: Padding(
                   padding: EdgeInsets.symmetric(
