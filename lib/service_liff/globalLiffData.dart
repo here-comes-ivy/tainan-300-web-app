@@ -101,14 +101,14 @@ class GlobalLiffData {
         // 取得 landmark uid
         final pathSegments = uri.pathSegments;
         print('pathSegments: $pathSegments');
-        
-        if (pathSegments.length > 1) {
+
+        if (pathSegments.isNotEmpty) {
           landmarkName = pathSegments.last; // 取得最後一段 path
         } else {
           landmarkName = 'Url location';
         }
 
-        // 取得 sendMessage 參數（如果需要用來判斷是否顯示按鈕）
+        // 取得 sendMessage 參數
         final sendMessageParam = uri.queryParameters['sendMessage'];
         isSendMessage = sendMessageParam?.toLowerCase() == 'true';
 

@@ -7654,7 +7654,7 @@ m.toString
 q=A.fx(m)
 p=q.goz()
 A.dp("pathSegments: "+A.h(p))
-if(J.c6(p)>1)$.CU=J.qL(p)
+if(J.c6(p)!==0)$.CU=J.qL(p)
 else $.CU="Url location"
 o=q.gzK().h(0,"sendMessage")
 m=o
