@@ -15,7 +15,7 @@ class _CheckinMessageState extends State<CheckinMessage> {
 
   String landmark = GlobalLiffData.landmarkName ?? 'Unknown Landmark';
 
-  String password = GlobalLiffData.password;
+  String password = GlobalLiffData.password ?? '未知密碼';
 
   String dateTime = DateFormat('yyyy-MM-dd kk:mm').format(DateTime.now());
 

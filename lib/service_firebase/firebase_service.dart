@@ -7,8 +7,10 @@ class FirebaseService extends ChangeNotifier {
   static const cacheDuration = Duration(minutes: 5);
 
   Future<List<Map<String, dynamic>>> getAllLandmarkDataFromFirestore() async {
+
     // 檢查記憶體中的快取是否仍然有效
     if (_cachedData != null && _lastFetchTime != null) {
+          print('快取數據結構：${_cachedData!.first}'); 
       final now = DateTime.now();
       if (now.difference(_lastFetchTime!) < cacheDuration) {
         return _cachedData!;
@@ -32,6 +34,7 @@ class FirebaseService extends ChangeNotifier {
         }
       }
     }
+    print('新取得數據結構：$allLocations'); 
       return allLocations;
     } catch (e) {
       print('Error getting locations from Firestore: $e');

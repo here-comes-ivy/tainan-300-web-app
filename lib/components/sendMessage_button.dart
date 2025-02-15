@@ -25,14 +25,18 @@ class _SendMessageButtonState extends State<SendMessageButton> {
 
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(
-              success ? '成功送出通關密語！' : '無法送出訊息: $errorMessage',
-            ),
-            backgroundColor: success ? Colors.green : Colors.red,
-            duration: const Duration(seconds: 2),
+        content: Text(
+          success ? '成功送出通關密語！' : '無法送出訊息: $errorMessage',
+        ),
+        backgroundColor: success ? Colors.green : Colors.red,
+        duration: const Duration(seconds: 2),
           ),
         );
+
+        // await Future.delayed(const Duration(seconds: 2));
+        // FlutterLineLiff().closeWindow();
       },
+      
       
     );
   }
