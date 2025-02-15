@@ -19,19 +19,23 @@ class FirebaseService extends ChangeNotifier {
       final QuerySnapshot querySnapshot =
           await FirebaseFirestore.instance.collection('landmarks').get();
 
-      _cachedData = querySnapshot.docs
-          .where((doc) => doc.id != 'metadata')
-          .map((doc) => {
-                'id': doc.id,
-                ...doc.data() as Map<String, dynamic>,
-              })
-          .toList();
-      
-      _lastFetchTime = DateTime.now();
-      return _cachedData!;
+    List<Map<String, dynamic>> allLocations = [];
+    for (var doc in querySnapshot.docs) {
+      if (doc.id != 'metadata') {
+        try {
+          Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+          data['id'] = doc.id;
+          allLocations.add(data);
+        } catch (e) {
+          print('Document parsing error for ${doc.id}: $e');
+          continue;
+        }
+      }
+    }
+      return allLocations;
     } catch (e) {
       print('Error getting locations from Firestore: $e');
-      return _cachedData ?? [];
+      return [];
     }
   }
 
