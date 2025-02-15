@@ -100,7 +100,8 @@ class GlobalLiffData {
 
         // 取得 landmark uid
         final pathSegments = uri.pathSegments;
-
+        print('pathSegments: $pathSegments');
+        
         if (pathSegments.length > 1) {
           landmarkName = pathSegments.last; // 取得最後一段 path
         } else {
