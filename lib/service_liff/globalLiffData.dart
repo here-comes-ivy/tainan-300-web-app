@@ -93,32 +93,7 @@ class GlobalLiffData {
     }
   }
 
-  static Future<void> getLocationDataFromUrl() async {
-    try {
-      if (!isInitialized) {
-        final uri = Uri.parse(html.window.location.href);
 
-        // 取得 landmark uid
-        final pathSegments = uri.pathSegments;
-        print('pathSegments: $pathSegments');
-
-        if (pathSegments.isNotEmpty) {
-          landmarkName = pathSegments.last; // 取得最後一段 path
-        } else {
-          landmarkName = 'Url location';
-        }
-
-        // 取得 sendMessage 參數
-        final sendMessageParam = uri.queryParameters['sendMessage'];
-        isSendMessage = sendMessageParam?.toLowerCase() == 'true';
-
-        print('Landmark Name: $landmarkName');
-        print('Should Send Message: $isSendMessage');
-      }
-    } catch (e) {
-      print('Error getting location data from Url: $e');
-    }
-  }
 
   static Future<void> getAllLandmarkFromFirestore() async {
     try {
@@ -132,12 +107,29 @@ class GlobalLiffData {
 
   static Future<void> getSelectedLandmarkData() async {
     try {
-      final uri = Uri.parse(html.window.location.href);
-      String locationParam = uri.queryParameters['uid'] ?? '';
+      if (!isInitialized) {
+        final uri = Uri.parse(html.window.location.href);
+        String? locationSegment;
+        // 取得 landmark uid
+        final pathSegments = uri.pathSegments;
+        print('pathSegments: $pathSegments');
 
-      if (locationParam.isNotEmpty) {
+        if (pathSegments.isNotEmpty) {
+          locationSegment = pathSegments.last; // 取得最後一段 path
+        } else {
+          landmarkName = 'Url location';
+        }
+
+        // 取得 sendMessage 參數
+        final sendMessageParam = uri.queryParameters['sendMessage'];
+        isSendMessage = sendMessageParam?.toLowerCase() == 'true';
+
+        print('locationSegment: $locationSegment');
+        print('Should Send Message: $isSendMessage');
+
+        if (locationSegment != null && locationSegment.isNotEmpty) {
         landmarkDetails = allLandmarkDetails.firstWhere(
-          (landmark) => landmark['id'] == locationParam,
+          (landmark) => landmark['id'] == locationSegment,
           orElse: () => <String, dynamic>{},
         );
         if (allLandmarkDetails.isNotEmpty) {
@@ -152,15 +144,48 @@ class GlobalLiffData {
               landmarkDetails['landmark_pictureUrl'].toString();
           landmarkInfoTitle = landmarkDetails['infoWindow_title'];
           landmarkInfoDescription = landmarkDetails['infoWindow_snippet'];
+
+          print('Selected Landmark Details: $landmarkDetails');
         } else {
-          await getLocationDataFromUrl();
+          // await getLocationDataFromUrl();
         }
+      }
+
       } else {
-        await getLocationDataFromUrl();
+        // await getLocationDataFromUrl();
       }
     } catch (e) {
       print('Error getting the selected location data: $e');
-      await getLocationDataFromUrl();
+      // await getLocationDataFromUrl();
     }
   }
+
+
+  //   static Future<void> getLocationDataFromUrl() async {
+  //   try {
+  //     if (!isInitialized) {
+  //       final uri = Uri.parse(html.window.location.href);
+
+  //       // 取得 landmark uid
+  //       final pathSegments = uri.pathSegments;
+  //       print('pathSegments: $pathSegments');
+
+  //       if (pathSegments.isNotEmpty) {
+  //         landmarkName = pathSegments.last; // 取得最後一段 path
+  //       } else {
+  //         landmarkName = 'Url location';
+  //       }
+
+  //       // 取得 sendMessage 參數
+  //       final sendMessageParam = uri.queryParameters['sendMessage'];
+  //       isSendMessage = sendMessageParam?.toLowerCase() == 'true';
+
+  //       print('Landmark Name: $landmarkName');
+  //       print('Should Send Message: $isSendMessage');
+  //     }
+  //   } catch (e) {
+  //     print('Error getting location data from Url: $e');
+  //   }
+  // }
+
 }
