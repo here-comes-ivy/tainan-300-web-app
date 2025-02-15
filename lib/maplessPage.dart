@@ -6,6 +6,7 @@ import 'components/redirect_button.dart';
 import 'package:flutter_line_liff/flutter_line_liff.dart';
 import 'package:flutter/services.dart';
 import 'components/warning_message.dart';
+import 'components/sendMessage_button.dart';
 import 'package:lottie/lottie.dart';
 
 class MaplessPage extends StatefulWidget {
@@ -13,7 +14,8 @@ class MaplessPage extends StatefulWidget {
   State<MaplessPage> createState() => _MaplessPageState();
 }
 
-class _MaplessPageState extends State<MaplessPage> with SingleTickerProviderStateMixin {
+class _MaplessPageState extends State<MaplessPage>
+    with SingleTickerProviderStateMixin {
   late Future<void> _initDataFuture;
 
   bool _showAnimation = true; // 控制動畫顯示
@@ -55,9 +57,9 @@ class _MaplessPageState extends State<MaplessPage> with SingleTickerProviderStat
         future: _initDataFuture,
         builder: (context, snapshot) {
           if (!GlobalLiffData.isInitialized) {
-              return Center(
-                child: CircularProgressIndicator(color: ThemeData().primaryColor),
-              );
+            return Center(
+              child: CircularProgressIndicator(color: ThemeData().primaryColor),
+            );
           } else {
             final String userName = GlobalLiffData.userName ?? '匿名用戶';
             final String userPhoto = GlobalLiffData.userPhotoUrl ??
@@ -93,38 +95,23 @@ class _MaplessPageState extends State<MaplessPage> with SingleTickerProviderStat
                           ],
                         ),
                         CheckinMessage(),
-                        AspectRatio(
-                          aspectRatio: 16 / 9,
-                          child: Container(
-                            width: MediaQuery.of(context).size.width,
-                            child: Image.asset(
-                              'assets/images/iF300eventMap.jpg',
-                              fit: BoxFit.cover, // 或使用 contain，視需求而定
-                            ),
-                          ),
-                        ),
-                        IntrinsicHeight(
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 6.0),
                           child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            spacing: 10,
                             children: [
-                              Flexible(
-                                flex: 1,
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 6),
-                                  child: RedirectButton(),
-                                ),
-                              ),
-                              Flexible(
-                                flex: 3,
-                                child: FittedBox(
-                                  fit: BoxFit.scaleDown,
-                                  child: WarningMessage(),
-                                ),
-                              )
+                              if (GlobalLiffData.isInclient == true) ...[
+                                Expanded(child: RedirectButton()),
+                                Expanded(child: SendMessageButton()),
+                              ] else ...[
+                                Expanded(child: RedirectButton()),
+                              ],
                             ],
                           ),
                         ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: WarningMessage(),
+                        )
                       ],
                     ),
                   ),

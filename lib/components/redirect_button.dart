@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_line_liff/flutter_line_liff.dart';
-import '../../service_liff/liff_service.dart';
 import '../../service_liff/globalLiffData.dart';
+import 'reusableButtons.dart';
 
 class RedirectButton extends StatefulWidget {
   const RedirectButton({super.key});
@@ -16,16 +16,9 @@ class _RedirectButtonState extends State<RedirectButton> {
   Widget build(BuildContext context) {
     final String password = GlobalLiffData.password;
 
-    return ElevatedButton(
-
-      style: ElevatedButton.styleFrom(
-        shadowColor: Colors.grey,
-        elevation: 5,
-        backgroundColor: Theme.of(context).primaryColor,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(6),
-        ),
-      ),
+    return ReusableButtons().buildButton(
+      context: context,
+      text: '領獎去',
       onPressed: () async {
         Clipboard.setData(ClipboardData(text: password));
         FlutterLineLiff().openWindow(
@@ -35,13 +28,8 @@ class _RedirectButtonState extends State<RedirectButton> {
           ),
         );
       },
-      child: Text('領獎去',
-          softWrap: false,
-          style: TextStyle(
-              fontSize: 14,
-              overflow: TextOverflow.visible,
-              color: Colors.white,
-              fontWeight: FontWeight.bold)),
+      
+          
     );
   }
 }

@@ -20,6 +20,7 @@ class GlobalLiffData {
   static String? decodedIDToken;
   static String? accessToken;
   static String? idToken;
+  static bool? isInclient;
 
   static String? userName;
   static String? userPhotoUrl;
@@ -62,6 +63,8 @@ class GlobalLiffData {
         decodedIDToken = liffInstance.getDecodedIDToken()?.toDebugString();
         accessToken = liffInstance.getAccessToken();
         idToken = liffInstance.getIDToken();
+        isInclient = liffInstance.isInClient;
+        
       });
     } else {}
   }
