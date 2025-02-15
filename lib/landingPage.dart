@@ -42,64 +42,99 @@ class _LandingPageState extends State<LandingPage>
             final String userName = GlobalLiffData.userName ?? '匿名用戶';
             final String userPhoto =
                 GlobalLiffData.userPhotoUrl ?? 'assets/images/LOGO.png';
+            String landmarkPictureUrl = GlobalLiffData.landmarkPictureUrl ?? '';
 
             return Scaffold(
-              appBar: AppBar(
-                title: Text('「一府 x iF」遊城活動打卡'),
-                leading: Image.asset('assets/images/LOGO.png'),
-                surfaceTintColor: Colors.white,
-                
-                shape: Border(bottom: BorderSide(color: Colors.grey, width: 1)),
-                elevation: 4,
-              ),
-              body: SafeArea(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal:
-                        MediaQuery.of(context).size.width > 600 ? 40.0 : 20.0,
-                    vertical:
-                        MediaQuery.of(context).size.width > 600 ? 40.0 : 16.0,
-                  ),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start, // 改為從頂部開始排列
-                      mainAxisSize: MainAxisSize.min,
+              // appBar: AppBar(
+              //   title: Text('「一府 x iF」遊城活動打卡'),
+              //   leading: Image.asset('assets/images/LOGO.png'),
+              //   surfaceTintColor: Colors.white,
+              //   shape: Border(bottom: BorderSide(color: Colors.grey, width: 1)),
+              //   elevation: 4,
+              // ),
+              body: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Stack(
+                      alignment: Alignment.bottomCenter,
+                      clipBehavior: Clip.none, 
                       children: [
-                        Row(
-                          children: [
-                            CircleAvatar(
-                              radius: 20,
-                              foregroundImage: NetworkImage(userPhoto),
-                              backgroundColor: Colors.grey,
-                            ),
-                            SizedBox(width: 10),
-                            Text(
-                              userName,
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold),
-                            ),
-                          ],
+                        // 背景滿版圖片
+                        SizedBox(
+                          width: double.infinity,
+                          height: 300,
+                          child: landmarkPictureUrl.isNotEmpty
+                              ? Image.network(
+                                  landmarkPictureUrl,
+                                  fit: BoxFit.cover,
+                                )
+                              : Image.asset(
+                                  'assets/images/iF300eventMap.jpg',
+                                  fit: BoxFit.cover,
+                                ),
                         ),
-                        CheckinMessage(),
-                        LandmarkdetailsCard(),
-                        SizedBox(height: 10),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 6.0),
-                          child: Row(
-                            children: [
-                              GlobalLiffData.isSendMessage == true
-                                  ? Expanded(child: SendMessageButton())
-                                  : Expanded(child: RedirectButton()),
-                            ],
+
+                        Positioned(
+                          bottom: -40,
+                          child: CircleAvatar(
+                            radius: 40,
+                            foregroundImage:
+                                const AssetImage('assets/images/LOGO.png'),
+                            backgroundColor: Colors.white,
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: WarningMessage(),
-                        )
                       ],
                     ),
-                  ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: MediaQuery.of(context).size.width > 600
+                            ? 40.0
+                            : 20.0,
+                        vertical: MediaQuery.of(context).size.width > 600
+                            ? 40.0
+                            : 20.0,
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start, // 改為從頂部開始排列
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Row(
+                            children: [
+                              CircleAvatar(
+                                radius: 20,
+                                foregroundImage: NetworkImage(userPhoto),
+                                backgroundColor: Colors.grey,
+                              ),
+                              SizedBox(width: 10),
+                              Text(
+                                userName,
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                          CheckinMessage(),
+                          LandmarkdetailsCard(),
+                          SizedBox(height: 10),
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 6.0),
+                            child: Row(
+                              children: [
+                                GlobalLiffData.isSendMessage == true
+                                    ? Expanded(child: SendMessageButton())
+                                    : Expanded(child: RedirectButton()),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: WarningMessage(),
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
               ),
             );
