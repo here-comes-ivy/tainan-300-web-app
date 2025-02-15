@@ -97,9 +97,13 @@ class _MaplessPageState extends State<MaplessPage>
                         CheckinMessage(),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 6.0),
-                          child: GlobalLiffData.isInclient == true
-                              ? Expanded(child: SendMessageButton())
-                              : Expanded(child: RedirectButton()),
+                          child: Row(
+                            children: [
+                              GlobalLiffData.isInclient == true
+                                  ? Expanded(child: SendMessageButton())
+                                  : Expanded(child: RedirectButton()),
+                            ],
+                          ),
                           // child: Row(
                           //   children: [
                           //     if (GlobalLiffData.isInclient == true) ...[
