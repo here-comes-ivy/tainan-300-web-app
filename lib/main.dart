@@ -5,7 +5,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'service_firebase/firebase_options.dart';
 import 'dart:html' as html;
 import 'dart:js' as js;
-import 'maplessPage.dart';
+import 'landingPage.dart';
+import 'nullLocationPage.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -51,7 +52,9 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+          print(GlobalLiffData.landmarkDetails);
     return MaterialApp(
+      title: "「一府 x iF」遊城活動打卡",
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primaryColor: const Color.fromRGBO(218, 188, 76, 1),
@@ -79,7 +82,8 @@ class _MyAppState extends State<MyApp> {
         //   seedColor: Colors.white,
         // ),
       ),
-      home: MaplessPage(),
+
+      home: LandingPage() //GlobalLiffData.landmarkDetails.isNotEmpty ? NullLocationPage() : LandingPage(),
     );
   }
 }
