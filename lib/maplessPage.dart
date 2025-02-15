@@ -18,36 +18,14 @@ class _MaplessPageState extends State<MaplessPage>
     with SingleTickerProviderStateMixin {
   late Future<void> _initDataFuture;
 
-  bool _showAnimation = true; // 控制動畫顯示
-  late AnimationController _animationController;
-
   @override
   void initState() {
     super.initState();
     _initDataFuture = _initializeData();
-
-    _animationController = AnimationController(
-      vsync: this,
-      duration: Duration(seconds: 3), // 設置動畫持續時間
-    );
-
-    _animationController.addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
-        setState(() {
-          _showAnimation = false; // 動畫完成後隱藏
-        });
-      }
-    });
   }
 
   Future<void> _initializeData() async {
     await GlobalLiffData.getAllLiffData();
-  }
-
-  @override
-  void dispose() {
-    _animationController.dispose();
-    super.dispose();
   }
 
   @override
@@ -99,7 +77,7 @@ class _MaplessPageState extends State<MaplessPage>
                           padding: const EdgeInsets.symmetric(horizontal: 6.0),
                           child: Row(
                             children: [
-                              GlobalLiffData.isInclient == true
+                              GlobalLiffData.isSendMessage == true
                                   ? Expanded(child: SendMessageButton())
                                   : Expanded(child: RedirectButton()),
                             ],

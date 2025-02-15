@@ -21,6 +21,7 @@ class GlobalLiffData {
   static String? accessToken;
   static String? idToken;
   static bool? isInclient;
+  static bool? isSendMessage;
 
   static String? userName;
   static String? userPhotoUrl;
@@ -93,27 +94,27 @@ class GlobalLiffData {
     }
   }
 
-  static Future<void> getLocationDataFromUrl() async {
-    try {
-      if (!isInitialized) {
-        final uri = Uri.parse(html.window.location.href);
+static Future<void> getLocationDataFromUrl() async {
+  try {
+    if (!isInitialized) {
+      final uri = Uri.parse(html.window.location.href);
 
-        final locationParam = uri.queryParameters['uid'] ?? 'Url location';
-        landmarkName = locationParam;
+      // 取得 uid 參數
+      landmarkName = uri.queryParameters['uid'] ?? 'Url location';
 
-        final lastUnderscoreIndex = locationParam.lastIndexOf('_');
+      // 取得 sendMessage 參數（如果需要用來判斷是否顯示按鈕）
+      final sendMessageParam = uri.queryParameters['sendMessage'];
+      isSendMessage = sendMessageParam?.toLowerCase() == 'true';
 
-        if (lastUnderscoreIndex != -1) {
-          landmarkName = locationParam.substring(0, lastUnderscoreIndex);
-          password = locationParam.substring(lastUnderscoreIndex + 1);
-        } else {
-          return;
-        }
-      }
-    } catch (e) {
-      print('Error getting location data from Url: $e');
+      print('Landmark Name: $landmarkName');
+      print('Should Send Message: $isSendMessage');
+
     }
+  } catch (e) {
+    print('Error getting location data from Url: $e');
   }
+}
+
 
   static Future<void> getAllLandmarkFromFirestore() async {
     try {
