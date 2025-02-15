@@ -31,7 +31,7 @@ class GlobalLiffData {
   static List<Map<String, dynamic>> allLandmarkDetails = [];
   static Map<String, dynamic> landmarkDetails = {};
   static String? landmarkName;
-  static String password  = '未知密碼';
+  static String password = '未知密碼';
   static LatLng? landmarkLatLng;
   static String? landmarkPictureUrl;
   static String? landmarkInfoTitle;
@@ -65,7 +65,6 @@ class GlobalLiffData {
         accessToken = liffInstance.getAccessToken();
         idToken = liffInstance.getIDToken();
         isInclient = liffInstance.isInClient;
-        
       });
     } else {}
   }
@@ -94,36 +93,37 @@ class GlobalLiffData {
     }
   }
 
-static Future<void> getLocationDataFromUrl() async {
-  try {
-    if (!isInitialized) {
-      final uri = Uri.parse(html.window.location.href);
+  static Future<void> getLocationDataFromUrl() async {
+    try {
+      if (!isInitialized) {
+        final uri = Uri.parse(html.window.location.href);
 
-      // 取得 uid 參數
-      landmarkName = uri.queryParameters['uid'] ?? 'Url location';
+        // 取得 landmark uid
+        final pathSegments = uri.pathSegments;
 
-      // 取得 sendMessage 參數（如果需要用來判斷是否顯示按鈕）
-      final sendMessageParam = uri.queryParameters['sendMessage'];
-      isSendMessage = sendMessageParam?.toLowerCase() == 'true';
+        if (pathSegments.length > 1) {
+          landmarkName = pathSegments.last; // 取得最後一段 path
+        } else {
+          landmarkName = 'Url location';
+        }
 
-      print('Landmark Name: $landmarkName');
-      print('Should Send Message: $isSendMessage');
+        // 取得 sendMessage 參數（如果需要用來判斷是否顯示按鈕）
+        final sendMessageParam = uri.queryParameters['sendMessage'];
+        isSendMessage = sendMessageParam?.toLowerCase() == 'true';
 
+        print('Landmark Name: $landmarkName');
+        print('Should Send Message: $isSendMessage');
+      }
+    } catch (e) {
+      print('Error getting location data from Url: $e');
     }
-  } catch (e) {
-    print('Error getting location data from Url: $e');
   }
-}
-
 
   static Future<void> getAllLandmarkFromFirestore() async {
     try {
-     
-        final firebaseService = FirebaseService();
-        allLandmarkDetails =
-            await firebaseService.getAllLandmarkDataFromFirestore();
-            
-      
+      final firebaseService = FirebaseService();
+      allLandmarkDetails =
+          await firebaseService.getAllLandmarkDataFromFirestore();
     } catch (e) {
       print('Error getting all landmark data from Firestore: $e');
     }
@@ -131,34 +131,32 @@ static Future<void> getLocationDataFromUrl() async {
 
   static Future<void> getSelectedLandmarkData() async {
     try {
-  
-        final uri = Uri.parse(html.window.location.href);
-        String locationParam = uri.queryParameters['uid'] ?? '';
+      final uri = Uri.parse(html.window.location.href);
+      String locationParam = uri.queryParameters['uid'] ?? '';
 
-        if (locationParam.isNotEmpty) {
-          landmarkDetails = allLandmarkDetails.firstWhere(
-            (landmark) => landmark['id'] == locationParam,
-            orElse: () => <String, dynamic>{},
-          );         
-          if (allLandmarkDetails.isNotEmpty) {
-            landmarkName = landmarkDetails['landmark_name'];
-            password = landmarkDetails['password'];
+      if (locationParam.isNotEmpty) {
+        landmarkDetails = allLandmarkDetails.firstWhere(
+          (landmark) => landmark['id'] == locationParam,
+          orElse: () => <String, dynamic>{},
+        );
+        if (allLandmarkDetails.isNotEmpty) {
+          landmarkName = landmarkDetails['landmark_name'];
+          password = landmarkDetails['password'];
 
-            landmarkLatLng = LatLng(
-              landmarkDetails['position_lat'] as double,
-              landmarkDetails['position_lng'] as double,
-            );
-            landmarkPictureUrl =
-                landmarkDetails['landmark_pictureUrl'].toString();
-            landmarkInfoTitle = landmarkDetails['infoWindow_title'];
-            landmarkInfoDescription = landmarkDetails['infoWindow_snippet'];
-          } else {
-            await getLocationDataFromUrl();
-          }
+          landmarkLatLng = LatLng(
+            landmarkDetails['position_lat'] as double,
+            landmarkDetails['position_lng'] as double,
+          );
+          landmarkPictureUrl =
+              landmarkDetails['landmark_pictureUrl'].toString();
+          landmarkInfoTitle = landmarkDetails['infoWindow_title'];
+          landmarkInfoDescription = landmarkDetails['infoWindow_snippet'];
         } else {
           await getLocationDataFromUrl();
         }
-      
+      } else {
+        await getLocationDataFromUrl();
+      }
     } catch (e) {
       print('Error getting the selected location data: $e');
       await getLocationDataFromUrl();
