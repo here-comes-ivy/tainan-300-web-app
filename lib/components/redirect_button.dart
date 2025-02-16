@@ -15,6 +15,7 @@ class _RedirectButtonState extends State<RedirectButton> {
   Widget build(BuildContext context) {
     final String password = GlobalLiffData.password ?? '未知密碼';
     bool isSendMessage = GlobalLiffData.isSendMessage;
+    bool isLandmarkPageShown = GlobalLiffData.isLandmarkPageShown;
     FlutterLineLiff flutterLineLiff = FlutterLineLiff.instance;
     var onPressedRedirect = () async {
       Clipboard.setData(ClipboardData(text: password));
@@ -60,11 +61,11 @@ class _RedirectButtonState extends State<RedirectButton> {
           borderRadius: BorderRadius.circular(6),
         ),
       ),
-      onPressed: isSendMessage? onPressedSendMessage : onPressedRedirect,
+      onPressed: isSendMessage && isLandmarkPageShown? onPressedSendMessage : onPressedRedirect,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 14),
         child: Text(
-            isSendMessage? '傳送通關密語' : '前往 LINE 官方帳號',
+            isSendMessage && isLandmarkPageShown? '傳送通關密語' : '前往 LINE 官方帳號',
             style: TextStyle(
                 fontSize: 14,
                 overflow: TextOverflow.visible,
