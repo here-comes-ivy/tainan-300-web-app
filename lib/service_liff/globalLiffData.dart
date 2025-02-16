@@ -35,6 +35,10 @@ class GlobalLiffData {
   static String? landmarkInfoTitle;
   static String? landmarkInfoDescription;
 
+  static bool isLandmarkPageShown = false;
+
+
+
   static Future<void> getAllLiffData() async {
     print("Starting data initialization...");
     try {
@@ -44,7 +48,10 @@ class GlobalLiffData {
         getProfileData(),
         getFriendshipData(),
       ]);
-      await getSelectedLandmarkData();
+      await Future.wait([
+        getSelectedLandmarkData(),
+        showLandmarkMessage()
+      ]);
       isInitialized = true;
     } catch (e) {
       isInitialized = false;
@@ -52,6 +59,11 @@ class GlobalLiffData {
     }
   }
 
+  static Future<void> showLandmarkMessage() async {
+    isLandmarkPageShown = (friendshipStatus && landmarkDetails.isNotEmpty);
+  }
+
+  
   static Future<void> getLiffData() async {
     if (kIsWeb && !isInitialized) {
       await Future.microtask(() {
@@ -91,8 +103,6 @@ class GlobalLiffData {
     }
   }
 
-
-
   static Future<void> getAllLandmarkFromFirestore() async {
     try {
       final firebaseService = FirebaseService();
@@ -117,8 +127,6 @@ class GlobalLiffData {
         } else {
           landmarkName = 'Url location';
         }
-
-        // 取得 sendMessage 參數
         final sendMessageParam = uri.queryParameters['sendMessage'];
         isSendMessage = sendMessageParam?.toLowerCase() == 'true';
 
@@ -126,25 +134,24 @@ class GlobalLiffData {
         print('Should Send Message: $isSendMessage');
 
         if (locationSegment != null && locationSegment.isNotEmpty) {
-        landmarkDetails = allLandmarkDetails.firstWhere(
-          (landmark) => landmark['id'] == locationSegment,
-          orElse: () => <String, dynamic>{},
-        );
-        if (allLandmarkDetails.isNotEmpty) {
-          landmarkName = landmarkDetails['landmark_name'];
-          password = landmarkDetails['password'];
+          landmarkDetails = allLandmarkDetails.firstWhere(
+            (landmark) => landmark['id'] == locationSegment,
+            orElse: () => <String, dynamic>{},
+          );
+          if (allLandmarkDetails.isNotEmpty) {
+            landmarkName = landmarkDetails['landmark_name'];
+            password = landmarkDetails['password'];
 
-          landmarkPictureUrl =
-              landmarkDetails['landmark_pictureUrl'].toString();
-          landmarkInfoTitle = landmarkDetails['infoWindow_title'];
-          landmarkInfoDescription = landmarkDetails['infoWindow_snippet'];
+            landmarkPictureUrl =
+                landmarkDetails['landmark_pictureUrl'].toString();
+            landmarkInfoTitle = landmarkDetails['infoWindow_title'];
+            landmarkInfoDescription = landmarkDetails['infoWindow_snippet'];
 
-          print('Selected Landmark Details: $landmarkDetails');
-        } else {
-          // await getLocationDataFromUrl();
+            print('Selected Landmark Details: $landmarkDetails');
+          } else {
+            // await getLocationDataFromUrl();
+          }
         }
-      }
-
       } else {
         // await getLocationDataFromUrl();
       }
@@ -153,33 +160,4 @@ class GlobalLiffData {
       // await getLocationDataFromUrl();
     }
   }
-
-
-  //   static Future<void> getLocationDataFromUrl() async {
-  //   try {
-  //     if (!isInitialized) {
-  //       final uri = Uri.parse(html.window.location.href);
-
-  //       // 取得 landmark uid
-  //       final pathSegments = uri.pathSegments;
-  //       print('pathSegments: $pathSegments');
-
-  //       if (pathSegments.isNotEmpty) {
-  //         landmarkName = pathSegments.last; // 取得最後一段 path
-  //       } else {
-  //         landmarkName = 'Url location';
-  //       }
-
-  //       // 取得 sendMessage 參數
-  //       final sendMessageParam = uri.queryParameters['sendMessage'];
-  //       isSendMessage = sendMessageParam?.toLowerCase() == 'true';
-
-  //       print('Landmark Name: $landmarkName');
-  //       print('Should Send Message: $isSendMessage');
-  //     }
-  //   } catch (e) {
-  //     print('Error getting location data from Url: $e');
-  //   }
-  // }
-
 }
