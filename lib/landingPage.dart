@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'service_liff/globalLiffData.dart';
-import 'components/checkIn_message.dart';
+import 'components/welcome_message.dart';
 import 'components/redirect_button.dart';
 import 'package:flutter_line_liff/flutter_line_liff.dart';
 import 'package:flutter/services.dart';
-import 'components/warning_message.dart';
-import 'components/sendMessage_button.dart';
-import 'components/landmarkDetails_card.dart';
+import 'components/warning_card.dart';
+import 'components/pageDetails_card.dart';
 
 class LandingPage extends StatefulWidget {
   @override
@@ -39,43 +38,58 @@ class _LandingPageState extends State<LandingPage>
               child: CircularProgressIndicator(color: ThemeData().primaryColor),
             );
           } else {
-            final String userName = GlobalLiffData.userName ?? '匿名用戶';
-            final String userPhoto =
-                GlobalLiffData.userPhotoUrl ?? 'assets/images/LOGO.png';
             String landmarkPictureUrl = GlobalLiffData.landmarkPictureUrl ?? '';
-
             return Scaffold(
-              // appBar: AppBar(
-              //   title: Text('「一府 x iF」遊城活動打卡'),
-              //   leading: Image.asset('assets/images/LOGO.png'),
-              //   surfaceTintColor: Colors.white,
-              //   shape: Border(bottom: BorderSide(color: Colors.grey, width: 1)),
-              //   elevation: 4,
-              // ),
               body: SingleChildScrollView(
-                child: Column(
+                child: Stack(
+                  clipBehavior: Clip.none,
                   children: [
-                    Stack(
-                      alignment: Alignment.bottomCenter,
-                      clipBehavior: Clip.none, 
+                    Column(
                       children: [
-                        // 背景滿版圖片
                         SizedBox(
                           width: double.infinity,
-                          height: 300,
+                          height: MediaQuery.of(context).size.height * 0.3,
                           child: landmarkPictureUrl.isNotEmpty
                               ? Image.network(
                                   landmarkPictureUrl,
                                   fit: BoxFit.cover,
                                 )
                               : Image.asset(
-                                  'assets/images/iF300eventMap.jpg',
+                                  'assets/images/eventMap.jpg',
                                   fit: BoxFit.cover,
                                 ),
                         ),
-
-                        Positioned(
-                          bottom: -40,
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              LandmarkdetailsCard(),
+                              SizedBox(height: 10),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 6.0),
+                                child: RedirectButton(),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: WarningMessage(),
+                              )
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    Positioned(
+                      top: MediaQuery.of(context).size.height * 0.3 -
+                          40, 
+                      left: 0,
+                      right: 0,
+                      child: Center(
+                        child: Material(
+                          elevation: 4,
+                          shape: const CircleBorder(),
                           child: CircleAvatar(
                             radius: 40,
                             foregroundImage:
@@ -83,55 +97,6 @@ class _LandingPageState extends State<LandingPage>
                             backgroundColor: Colors.white,
                           ),
                         ),
-                      ],
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: MediaQuery.of(context).size.width > 600
-                            ? 40.0
-                            : 20.0,
-                        vertical: MediaQuery.of(context).size.width > 600
-                            ? 40.0
-                            : 20.0,
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start, // 改為從頂部開始排列
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Row(
-                            children: [
-                              CircleAvatar(
-                                radius: 20,
-                                foregroundImage: NetworkImage(userPhoto),
-                                backgroundColor: Colors.grey,
-                              ),
-                              SizedBox(width: 10),
-                              Text(
-                                userName,
-                                style: TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                          CheckinMessage(),
-                          LandmarkdetailsCard(),
-                          SizedBox(height: 10),
-                          Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 6.0),
-                            child: Row(
-                              children: [
-                                GlobalLiffData.isSendMessage == true
-                                    ? Expanded(child: SendMessageButton())
-                                    : Expanded(child: RedirectButton()),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: WarningMessage(),
-                          )
-                        ],
                       ),
                     ),
                   ],

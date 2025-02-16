@@ -3,10 +3,7 @@ import 'package:flutter_line_liff/flutter_line_liff.dart';
 import 'service_liff/globalLiffData.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'service_firebase/firebase_options.dart';
-import 'dart:html' as html;
-import 'dart:js' as js;
 import 'landingPage.dart';
-import 'nullLocationPage.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -83,7 +80,7 @@ class _MyAppState extends State<MyApp> {
         // ),
       ),
 
-      home: LandingPage() //GlobalLiffData.landmarkDetails.isNotEmpty ? NullLocationPage() : LandingPage(),
+      home: LandingPage() 
     );
   }
 }
