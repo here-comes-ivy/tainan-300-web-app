@@ -15,17 +15,17 @@ void main() async {
   );
 
   try {
-    await FlutterLineLiff().init(
+    await FlutterLineLiff.instance.init(
       config: Config(liffId: '2006821126-aW8ojkoN'),
       successCallback: () {
         debugPrint('LIFF init success.');
       },
       errorCallback: (error) {
         debugPrint(
-            'LIFF init error: ${error.name}, ${error.message}, ${error.stack}');
+            'LIFF init error: $error');
       },
     );
-    await FlutterLineLiff().ready;
+    await FlutterLineLiff.instance.ready;
     print('LIFF is ready.');
   } catch (e) {
     debugPrint('Initialization error: $e');

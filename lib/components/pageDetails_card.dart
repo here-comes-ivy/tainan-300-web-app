@@ -18,7 +18,7 @@ class LandmarkdetailsCard extends StatelessWidget {
       child: Padding(
         padding:
             const EdgeInsets.only(top: 37, left: 20, right: 20, bottom: 12),
-        child: GlobalLiffData.landmarkDetails.isEmpty
+        child: (GlobalLiffData.landmarkDetails.isEmpty || GlobalLiffData.friendshipStatus)
                   ? WelcomingMessage()
                   : LandmarkMessage()
       ),

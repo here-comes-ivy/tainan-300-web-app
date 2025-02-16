@@ -14,7 +14,7 @@ class _RedirectButtonState extends State<RedirectButton> {
   @override
   Widget build(BuildContext context) {
     final String password = GlobalLiffData.password ?? '未知密碼';
-    FlutterLineLiff flutterLineLiff = FlutterLineLiff();
+    FlutterLineLiff flutterLineLiff = FlutterLineLiff.instance;
     var onPressedRedirect = () async {
       Clipboard.setData(ClipboardData(text: password));
       flutterLineLiff.openWindow(
@@ -65,7 +65,7 @@ class _RedirectButtonState extends State<RedirectButton> {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 14),
         child: Text(
-            GlobalLiffData.landmarkDetails.isEmpty ? '前往 LINE 官方帳號' : '送出訊息',
+            GlobalLiffData.isSendMessage? '前往 LINE 官方帳號' : '送出訊息',
             style: TextStyle(
                 fontSize: 14,
                 overflow: TextOverflow.visible,

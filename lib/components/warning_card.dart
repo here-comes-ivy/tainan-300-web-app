@@ -27,7 +27,7 @@ class _WarningMessageState extends State<WarningMessage> {
           SizedBox(width: 6),
           Expanded(
             child: Text(
-              GlobalLiffData.landmarkDetails.isEmpty
+              (GlobalLiffData.landmarkDetails.isEmpty || GlobalLiffData.friendshipStatus)
                   ? '若未跳轉聊天室，請開啟 LINE APP 並搜尋「台南府城 300 LINE 官方帳號」、加入好友後即可開始參與活動，完成指定任務即可獲得獎品和店家優惠唷！'
                   : '若未跳轉聊天室，請開啟 LINE APP 後進入台南府城 300 LINE 官方帳號聊天室，貼上通關密語並送出換取獎勵。',
               style: TextStyle(

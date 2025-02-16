@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_line_liff/flutter_line_liff.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../service_firebase/firebase_service.dart';
 import 'dart:html' as html;
 import 'package:flutter/foundation.dart' show kIsWeb;
 
 class GlobalLiffData {
-  static final FlutterLineLiff liffInstance = FlutterLineLiff();
+  static final FlutterLineLiff liffInstance = FlutterLineLiff.instance;
   static bool isLoggedIn = false;
   static bool isInitialized = false;
 
@@ -21,18 +20,17 @@ class GlobalLiffData {
   static String? accessToken;
   static String? idToken;
   static bool? isInclient;
-  static bool? isSendMessage;
+  static bool isSendMessage = false;
 
   static String? userName;
   static String? userPhotoUrl;
 
-  static bool? friendshipStatus;
+  static bool friendshipStatus = false;
 
   static List<Map<String, dynamic>> allLandmarkDetails = [];
   static Map<String, dynamic> landmarkDetails = {};
   static String? landmarkName;
   static String? password;
-  static LatLng? landmarkLatLng;
   static String? landmarkPictureUrl;
   static String? landmarkInfoTitle;
   static String? landmarkInfoDescription;
@@ -58,10 +56,10 @@ class GlobalLiffData {
     if (kIsWeb && !isInitialized) {
       await Future.microtask(() {
         userId = liffInstance.context?.userId;
-        language = liffInstance.language;
+        language = liffInstance.appLanguage;
         lineVersion = liffInstance.lineVersion;
-        context = liffInstance.context?.toDebugString();
-        decodedIDToken = liffInstance.getDecodedIDToken()?.toDebugString();
+        context = liffInstance.context?.toString();
+        decodedIDToken = liffInstance.getDecodedIDToken()?.toString();
         accessToken = liffInstance.getAccessToken();
         idToken = liffInstance.getIDToken();
         isInclient = liffInstance.isInClient;
@@ -136,10 +134,6 @@ class GlobalLiffData {
           landmarkName = landmarkDetails['landmark_name'];
           password = landmarkDetails['password'];
 
-          landmarkLatLng = LatLng(
-            landmarkDetails['position_lat'] as double,
-            landmarkDetails['position_lng'] as double,
-          );
           landmarkPictureUrl =
               landmarkDetails['landmark_pictureUrl'].toString();
           landmarkInfoTitle = landmarkDetails['infoWindow_title'];
