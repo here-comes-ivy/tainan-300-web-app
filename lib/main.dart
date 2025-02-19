@@ -3,8 +3,6 @@ import 'package:flutter_line_liff/flutter_line_liff.dart';
 import 'service_liff/globalLiffData.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'service_firebase/firebase_options.dart';
-import 'landingPage.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'splashScreen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
