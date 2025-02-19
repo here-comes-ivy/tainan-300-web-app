@@ -52,7 +52,7 @@ class _MyAppState extends State<MyApp> {
         title: "「一府 x iF」遊城活動打卡",
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          fontFamily: 'NotoSans',
+          fontFamily: 'NotoSansTC',
           primaryColor: const Color.fromRGBO(218, 188, 76, 1),
 
           //useMaterial3: true,
