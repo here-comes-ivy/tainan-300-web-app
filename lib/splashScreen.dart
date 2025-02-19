@@ -37,8 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
             child: Lottie.asset(
               "assets/animations/travelerAnimation.json",
               fit: BoxFit.cover,
-              width: 300,
-              height: 300,
+              width: MediaQuery.of(context).size.width * 0.8,
             ),
           );
 
