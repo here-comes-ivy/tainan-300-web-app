@@ -4,6 +4,7 @@ import 'service_liff/globalLiffData.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'service_firebase/firebase_options.dart';
 import 'landingPage.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,8 +24,12 @@ void main() async {
         debugPrint('LIFF init error: $error');
       },
     );
-    await FlutterLineLiff.instance.ready;
+    await FlutterLineLiff.instance.ready.then((_) => FlutterNativeSplash.remove());
+
     print('LIFF is ready.');
+
+    
+    print('Splash removed.');
   } catch (e) {
     debugPrint('Initialization error: $e');
   }
@@ -53,7 +58,7 @@ class _MyAppState extends State<MyApp> {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           fontFamily: 'NotoSansTC',
-          primaryColor: const Color.fromRGBO(218, 188, 76, 1),
+          primaryColor: const Color(0XFFdabb4c),
 
           //useMaterial3: true,
           scaffoldBackgroundColor: Colors.white, // 修正顏色值格式
