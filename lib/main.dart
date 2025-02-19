@@ -5,7 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'service_firebase/firebase_options.dart';
 import 'landingPage.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-
+import 'splashScreen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -25,12 +25,8 @@ void main() async {
       },
     );
     await FlutterLineLiff.instance.ready;
-    FlutterNativeSplash.remove();
-
     print('LIFF is ready.');
-
     
-    print('Splash removed.');
   } catch (e) {
     debugPrint('Initialization error: $e');
   }
@@ -56,7 +52,6 @@ class _MyAppState extends State<MyApp> {
     print(GlobalLiffData.landmarkDetails);
     return MaterialApp(
         title: "「一府 x iF」遊城活動打卡",
-        debugShowCheckedModeBanner: false,
         theme: ThemeData(
           fontFamily: 'NotoSansTC',
           primaryColor: const Color(0XFFdabb4c),
@@ -84,6 +79,6 @@ class _MyAppState extends State<MyApp> {
           //   seedColor: Colors.white,
           // ),
         ),
-        home: LandingPage());
+        home: SplashScreen());
   }
 }
