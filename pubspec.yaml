@@ -28,7 +28,7 @@ dev_dependencies:
 
 flutter:
   fonts:
-    - family: NotoSans
+    - family: NotoSansTC
       fonts:
         - asset: assets/fonts/NotoSansTC.ttf
   uses-material-design: true

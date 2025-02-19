@@ -8,7 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class FirebaseService extends ChangeNotifier {
   static const String cacheKey = 'landmarks_cache';
   static const String lastFetchKey = 'landmarks_last_fetch';
-  static const cacheDuration = Duration(minutes: 5);
+  static const cacheDuration = Duration(minutes: 300);
 
   Future<List<Map<String, dynamic>>> getAllLandmarkDataFromFirestore() async {
     try {
