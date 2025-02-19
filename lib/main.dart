@@ -24,7 +24,8 @@ void main() async {
         debugPrint('LIFF init error: $error');
       },
     );
-    await FlutterLineLiff.instance.ready.then((_) => FlutterNativeSplash.remove());
+    await FlutterLineLiff.instance.ready;
+    FlutterNativeSplash.remove();
 
     print('LIFF is ready.');
 
