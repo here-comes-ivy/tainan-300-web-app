@@ -35,7 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
         builder: (context, snapshot) {
           Widget content = Center(
             child: Lottie.asset(
-              "assets/animations/travelerAnimation.json",
+              "assets/animations/IF_LOGO_.json",
               fit: BoxFit.cover,
               width: MediaQuery.of(context).size.width * 0.8,
             ),

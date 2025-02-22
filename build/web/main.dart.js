@@ -41472,7 +41472,7 @@ S(a){var s=this.d
 s===$&&A.b()
 return A.apL(A.anM(new A.af9(),s,t.H))}}
 A.af9.prototype={
-$2(a,b){var s=null,r=A.ct(a,s,t.w).w,q=A.Un(new A.wp(new A.Df("assets/animations/travelerAnimation.json",s,s,s,s,!1),s,s,s,s,s,s,s,s,s,r.a.a*0.8,s,B.dJ,s,s,s,s,s,s,s),s,s)
+$2(a,b){var s=null,r=A.ct(a,s,t.w).w,q=A.Un(new A.wp(new A.Df("assets/animations/IF_LOGO_.json",s,s,s,s,!1),s,s,s,s,s,s,s,s,s,r.a.a*0.8,s,B.dJ,s,s,s,s,s,s,s),s,s)
 if(b.a===B.e7)$.an.k3$.push(new A.af8(a))
 return q},
 $S:286}
