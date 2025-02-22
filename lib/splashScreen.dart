@@ -51,7 +51,7 @@ class _SplashScreenState extends State<SplashScreen> {
             });
           }
 
-          return content;
+          return Container(color: Color(0xFFFBF9ED), child: content);
         },
       ),
     );
