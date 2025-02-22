@@ -30,6 +30,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFFBF9ED),
       body: FutureBuilder<void>(
         future: _initDataFuture,
         builder: (context, snapshot) {
@@ -51,7 +52,7 @@ class _SplashScreenState extends State<SplashScreen> {
             });
           }
 
-          return Container(color: Color(0xFFFBF9ED), child: content);
+          return content;
         },
       ),
     );
