@@ -1,0 +1,35 @@
+name: Flutter Web Deploy
+
+on:
+  push:
+    branches:
+      - main # 當 main 分支有 push 時觸發
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "stable"
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Build Flutter web
+        run: flutter build web
+
+      - name: Add version to index.html
+        run: bash scripts/add_version.sh
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: g-aDbAe6IvP3COt3taSJLr9bPCoMrSyULr-6SLca
+          accountId: 6979f28d266a3ad6ae8827752ea74513
+          projectName: tainan300
+          directory: build/web
