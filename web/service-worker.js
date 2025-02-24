@@ -17,17 +17,36 @@ const RESOURCES = [
 ];
 
 // 安装事件 - 缓存资源
-self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      console.log('緩存已打開，正在添加資源');
-      return cache.addAll(RESOURCES);
-    }).then(() => {
-      console.log('新版本Service Worker安裝完成');
-      return self.skipWaiting(); // 立即激活新SW而不等待
-    })
-  );
-});
+// 在service-worker.js中修改fetch事件处理程序
+self.addEventListener('fetch', (event) => {
+    // 检查是否是外部资源（如Line SDK）
+    if (event.request.url.includes('line-scdn.net') || 
+        event.request.url.includes('cdn') || 
+        !event.request.url.startsWith(self.location.origin)) {
+      // 对外部资源使用网络优先策略，不进行缓存干预
+      event.respondWith(fetch(event.request));
+      return;
+    }
+    
+    // 对应用自身资源使用缓存优先策略
+    event.respondWith(
+      caches.match(event.request).then((response) => {
+        if (response) {
+          return response;
+        }
+        return fetch(event.request).then((response) => {
+          if (!response || response.status !== 200 || response.type !== 'basic') {
+            return response;
+          }
+          var responseToCache = response.clone();
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(event.request, responseToCache);
+          });
+          return response;
+        });
+      })
+    );
+  });
 
 // 激活事件 - 清理旧缓存
 self.addEventListener('activate', (event) => {
