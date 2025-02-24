@@ -1,4 +1,7 @@
 <!DOCTYPE html><html><head>
+  <script src="version.js"></script>
+
+
   <script type="module">
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js';
     import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js';
@@ -6,17 +9,6 @@
   </script>
 	<script charset="utf-8" src="https://static.line-scdn.net/liff/edge/versions/2.25.1/sdk.js"></script>
 
-  <script src="version.js"></script>
-  <script>
-    window.addEventListener('load', function() {
-      var mainScript = document.createElement('script');
-      mainScript.src = 'main.dart.js?version=' + APP_VERSION;
-      mainScript.defer = true;
-      document.body.appendChild(mainScript);
-    });
-  </script>
- 
- 
   <base href="/">
 
   <meta charset="UTF-8">
@@ -44,34 +36,34 @@
 </head>
 <body>
   <script>
+    let refreshing = false;
+    
     // Service Worker注册
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function() {
         navigator.serviceWorker.register('./service-worker.js').then(function(registration) {
           console.log('Service Worker注册成功:', registration.scope);
           
-          // 检查更新
+          // 检查更新但不自动刷新
           registration.addEventListener('updatefound', function() {
-            // 新的Service Worker
             const newWorker = registration.installing;
-            newWorker.addEventListener('statechange', function() {
-              if (newWorker.state === 'activated') {
-                // 当新的Service Worker激活时，刷新页面获取新内容
-                window.location.reload();
-              }
-            });
+            console.log('发现Service Worker更新');
           });
         }).catch(function(error) {
           console.log('Service Worker注册失败:', error);
         });
         
-        // 监听控制权变更（发生在Service Worker更新时）
+        // 避免循环刷新
         navigator.serviceWorker.addEventListener('controllerchange', function() {
-          console.log('Service Worker已更新');
+          if (!refreshing) {
+            refreshing = true;
+            console.log('Service Worker已更新，刷新页面');
+            window.location.reload();
+          }
         });
       });
     }
-  </script>
+    </script>
   
   <script src="flutter_bootstrap.js?version=v1.0.0" async=""></script>
 

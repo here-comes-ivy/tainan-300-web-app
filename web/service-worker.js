@@ -29,23 +29,27 @@ self.addEventListener('install', (event) => {
   );
 });
 
-// 激活事件 - 清理旧缓存
+// 在service-worker.js中
 self.addEventListener('activate', (event) => {
-  console.log('Service Worker activated...');
-  event.waitUntil(
-    caches.keys().then((keyList) => {
-      return Promise.all(keyList.map((key) => {
-        if (key !== CACHE_NAME) {
-          console.log('Deleting old cache:', key);
-          return caches.delete(key);
-        }
-      }));
-    }).then(() => {
-      console.log('Now using cache:', CACHE_NAME);
-      return self.clients.claim(); 
-    })
-  );
-});
+    event.waitUntil(
+      caches.keys().then((keyList) => {
+        return Promise.all(keyList.map((key) => {
+          if (key !== CACHE_NAME) {
+            return caches.delete(key);
+          }
+        }));
+      }).then(() => {
+        return self.clients.claim();
+      })
+    );
+  });
+  
+  // 不要在激活时自动刷新，而是设置一个标志
+  self.addEventListener('message', (event) => {
+    if (event.data && event.data.type === 'SKIP_WAITING') {
+      self.skipWaiting();
+    }
+  });
 
 // 请求拦截
 self.addEventListener('fetch', (event) => {
