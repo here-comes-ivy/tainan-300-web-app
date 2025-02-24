@@ -45,32 +45,4 @@
 <body>
   <script src="flutter_bootstrap.js?version=v1.0.0" async=""></script>
 
-  <script>
-    // Service Worker註冊
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function() {
-        navigator.serviceWorker.register('./service-worker.js').then(function(registration) {
-          console.log('Service Worker注册成功:', registration.scope);
-          
-          // 检查更新
-          registration.addEventListener('updatefound', function() {
-            // 新的Service Worker
-            const newWorker = registration.installing;
-            newWorker.addEventListener('statechange', function() {
-              if (newWorker.state === 'activated') {
-                window.location.reload();
-              }
-            });
-          });
-        }).catch(function(error) {
-          console.log('Service Worker註冊失敗:', error);
-        });
-        
-        navigator.serviceWorker.addEventListener('controllerchange', function() {
-          console.log('Service Worker已更新');
-        });
-      });
-    }
-  </script>
-
 </body></html>
