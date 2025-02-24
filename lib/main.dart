@@ -12,22 +12,22 @@ void main() async {
     (value) => print('Firebase initialized.'),
   );
 
-  try {
-    await FlutterLineLiff.instance.init(
-      config: Config(liffId: '2006821126-aW8ojkoN'),
-      successCallback: () {
-        debugPrint('LIFF init success.');
-      },
-      errorCallback: (error) {
-        debugPrint('LIFF init error: $error');
-      },
-    );
-    await FlutterLineLiff.instance.ready;
-    print('LIFF is ready.');
+  // try {
+  //   await FlutterLineLiff.instance.init(
+  //     config: Config(liffId: '2006821126-aW8ojkoN'),
+  //     successCallback: () {
+  //       debugPrint('LIFF init success.');
+  //     },
+  //     errorCallback: (error) {
+  //       debugPrint('LIFF init error: $error');
+  //     },
+  //   );
+  //   await FlutterLineLiff.instance.ready;
+  //   print('LIFF is ready.');
     
-  } catch (e) {
-    debugPrint('Initialization error: $e');
-  }
+  // } catch (e) {
+  //   debugPrint('Initialization error: $e');
+  // }
 
   runApp(MyApp());
 }

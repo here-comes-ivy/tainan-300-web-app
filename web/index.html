@@ -1,5 +1,4 @@
 <!DOCTYPE html><html><head>
-  <script src="version.js"></script>
 
 
   <script type="module">
@@ -36,34 +35,16 @@
 </head>
 <body>
   <script>
-    let refreshing = false;
-    
-    // Service Worker注册
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function() {
-        navigator.serviceWorker.register('./service-worker.js').then(function(registration) {
-          console.log('Service Worker注册成功:', registration.scope);
-          
-          // 检查更新但不自动刷新
-          registration.addEventListener('updatefound', function() {
-            const newWorker = registration.installing;
-            console.log('发现Service Worker更新');
-          });
-        }).catch(function(error) {
-          console.log('Service Worker注册失败:', error);
-        });
-        
-        // 避免循环刷新
-        navigator.serviceWorker.addEventListener('controllerchange', function() {
-          if (!refreshing) {
-            refreshing = true;
-            console.log('Service Worker已更新，刷新页面');
-            window.location.reload();
-          }
-        });
-      });
-    }
-    </script>
+    window.addEventListener('load', function() {
+      if (typeof liff !== 'undefined') {
+        liff.init({ liffId: "2006821126-aW8ojkoN" }).then(() => {
+          const script = document.createElement('script');
+          script.src = "flutter_bootstrap.js?version=202502241230";
+          document.body.appendChild(script);
+        }).catch(err => console.error("LIFF 初始化失敗", err));
+      }
+    });
+  </script>
   
   <script src="flutter_bootstrap.js" async=""></script>
 
