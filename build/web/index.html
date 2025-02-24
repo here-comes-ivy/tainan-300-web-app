@@ -4,9 +4,19 @@
     import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js';
     
   </script>
-  
-
 	<script charset="utf-8" src="https://static.line-scdn.net/liff/edge/versions/2.25.1/sdk.js"></script>
+
+  <script src="version.js"></script>
+  <script>
+    window.addEventListener('load', function() {
+      var mainScript = document.createElement('script');
+      mainScript.src = 'main.dart.js?version=' + APP_VERSION;
+      mainScript.defer = true;
+      document.body.appendChild(mainScript);
+    });
+  </script>
+ 
+ 
   <base href="/">
 
   <meta charset="UTF-8">
@@ -34,15 +44,35 @@
 </head>
 <body>
   <script>
+    // Service Worker注册
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.getRegistrations().then(function(registrations) {
-        for (let registration of registrations) {
-          registration.unregister(); // 移除所有已註冊的 Service Worker
-        }
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('./service-worker.js').then(function(registration) {
+          console.log('Service Worker注册成功:', registration.scope);
+          
+          // 检查更新
+          registration.addEventListener('updatefound', function() {
+            // 新的Service Worker
+            const newWorker = registration.installing;
+            newWorker.addEventListener('statechange', function() {
+              if (newWorker.state === 'activated') {
+                // 当新的Service Worker激活时，刷新页面获取新内容
+                window.location.reload();
+              }
+            });
+          });
+        }).catch(function(error) {
+          console.log('Service Worker注册失败:', error);
+        });
+        
+        // 监听控制权变更（发生在Service Worker更新时）
+        navigator.serviceWorker.addEventListener('controllerchange', function() {
+          console.log('Service Worker已更新');
+        });
       });
     }
   </script>
   
-  <script src="flutter_bootstrap.js" async=""></script>
+  <script src="flutter_bootstrap.js?version=v1.0.0" async=""></script>
 
 </body></html>
