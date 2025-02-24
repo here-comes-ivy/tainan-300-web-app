@@ -29,13 +29,48 @@
   
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
   
+  <!-- 設置版本號 -->
+  <script src="version.js"></script>
+  <script>
+    // 動態設置版本號
+    window.addEventListener('load', function() {
+      var mainScript = document.createElement('script');
+      mainScript.src = 'flutter_bootstrap.js?version=' + APP_VERSION;
+      mainScript.defer = true;
+      document.body.appendChild(mainScript);
+    });
+  </script>
+
 </head>
 <body>
+  <script src="flutter_bootstrap.js?version=v1.0.0" async=""></script>
 
-  
-  
-  
-  <script src="flutter_bootstrap.js" async=""></script>
-
+  <script>
+    // Service Worker註冊
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('./service-worker.js').then(function(registration) {
+          console.log('Service Worker注册成功:', registration.scope);
+          
+          // 检查更新
+          registration.addEventListener('updatefound', function() {
+            // 新的Service Worker
+            const newWorker = registration.installing;
+            newWorker.addEventListener('statechange', function() {
+              if (newWorker.state === 'activated') {
+                window.location.reload();
+              }
+            });
+          });
+        }).catch(function(error) {
+          console.log('Service Worker註冊失敗:', error);
+        });
+        
+        navigator.serviceWorker.addEventListener('controllerchange', function() {
+          console.log('Service Worker已更新');
+        });
+      });
+    }
+  </script>
 
 </body></html>
