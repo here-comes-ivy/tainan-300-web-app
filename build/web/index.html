@@ -29,20 +29,20 @@
   
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
   
-  <!-- 設置版本號 -->
-  <script src="version.js"></script>
-  <script>
-    // 動態設置版本號
-    window.addEventListener('load', function() {
-      var mainScript = document.createElement('script');
-      mainScript.src = 'flutter_bootstrap.js?version=' + APP_VERSION;
-      mainScript.defer = true;
-      document.body.appendChild(mainScript);
-    });
-  </script>
+
 
 </head>
 <body>
-  <script src="flutter_bootstrap.js?version=v1.0.0" async=""></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(function(registrations) {
+        for (let registration of registrations) {
+          registration.unregister(); // 移除所有已註冊的 Service Worker
+        }
+      });
+    }
+  </script>
+  
+  <script src="flutter_bootstrap.js" async=""></script>
 
 </body></html>
