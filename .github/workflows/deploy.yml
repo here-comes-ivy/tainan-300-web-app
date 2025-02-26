@@ -32,5 +32,5 @@ jobs:
         with:
           apiToken: g-aDbAe6IvP3COt3taSJLr9bPCoMrSyULr-6SLca
           accountId: 6979f28d266a3ad6ae8827752ea74513
-          projectName: tainan300
+          projectName: tainan300-landingpage
           directory: build/web
