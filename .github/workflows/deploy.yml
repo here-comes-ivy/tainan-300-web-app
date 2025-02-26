@@ -21,7 +21,7 @@ jobs:
         run: flutter pub get
 
       - name: Build Flutter web
-        run: flutter build web  --base-href="/tainan300/event/"
+        run: flutter build web  
 
       - name: Add version to index.html
         run: bash scripts/add_version.sh
