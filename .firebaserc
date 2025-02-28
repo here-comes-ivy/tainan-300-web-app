@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "explorenowtainan"
-  }
+    "default": "nannova-tainan300"
+  },
+  "targets": {},
+  "etags": {}
 }
