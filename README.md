@@ -1,40 +1,36 @@
-# ExploreNow 
+# Beyond the Walls - An Interactive Digital Adventure
 
-## Overview
+## Welcome to Beyond the Walls!
+Hey there! We’re **NanNova Labs**, an interdisciplinary team passionate about blending **education, technology, and tourism** to bring cultural heritage to life. As Tainan celebrates its **300th anniversary**, we’re thrilled to introduce **Beyond the Walls**—an immersive, interactive digital city tour designed to make history more engaging than ever!
 
-ExploreNow is a hybrid app project designed to integrate physical and digital experiences, leveraging Google Maps and LINE official accounts to promote local tourism and culture. The app guides users to visit attractions, rewarding them upon arrival to encourage continued exploration. This modular system can be adapted to various activities, such as pub crawling or coffee crawling events.
+## Why We Built This 🚀
+Tainan’s rich history isn’t just something to read about—it’s something to **experience**! We wanted to break down the barriers of time and space, allowing **anyone, anywhere** to explore the city’s historic walls, culture, and evolution. With our digital platform, you can:
+- **Walk through history** (virtually or physically!) with an interactive map 🏰
+- **Solve cultural challenges** through fun, gamified activities 🎮
+- **Support local businesses** and discover hidden gems 🏪
+- **Engage with real stories** that shaped Tainan over three centuries 📖
 
-## Features
+## What’s Inside? 🔥
+### 🗺️ Interactive Digital Map
+Our map is **your gateway to Tainan’s past and present**, featuring:
+- **Historic Site Comparisons**: Swipe through time with side-by-side old vs. new city views.
+- **Event Hotspots**: Find and join key celebrations of “Tainan 300.”
+- **Local Business Partnerships**: Exclusive offers from cafés, restaurants, and shops that are part of the journey.
 
-- **Interactive Exploration**: Guides users to local attractions and rewards them for visiting.
-- **Modular Design**: Can be adapted for different activity scenarios, such as pub or coffee crawls.
-- **LINE Official Account Integration**: Utilizes LINE's point card functionality and chatbot for user interaction.
-- **LIFF and Flutter Web App**: Incorporates a Flutter-based web app hosted on Firebase to display maps and attraction details.
-- **Google Sheets Integration**: Enables organizers to easily edit and update attraction and partner store information.
+### 🎯 Cultural Mini-Games
+Get hands-on with **interactive challenges**, quizzes, and exploration missions that test your knowledge and deepen your connection to Tainan’s history.
 
-## Tech Stack
+### 🌍 Hybrid Onsite & Online Experience
+Join a **physical tour** or explore **digitally from anywhere**. Whether you’re in Tainan or across the world, **you’re part of the story**!
 
-- **Frontend**: Flutter Web App hosted on Firebase Hosting
-- **Backend**: Google Apps Script
+## Tech Stack 🛠️
+- **Frontend**: Flutter Web App hosted on Cloudflare Hosting
+- **Backend**: Firebase, Apps Script
 - **Platform**: Google Maps API, LINE Messaging API, LINE LIFF
-- **Storage**: Google Sheets
+- **Database**: Firebase
 
-## Prerequisites
-
-1. A LINE Developers account with a channel configured for Messaging API.
-2. Firebase account with hosting enabled.
-3. Google account with access to Google Sheets.
-
-
-## Usage
-
-1. Users scan QR codes at attractions to collect points using LINE's point card feature.
-2. Points can be redeemed for rewards from local partner stores.
-3. Organizers can update attraction details via Google Sheets, automatically reflected in the app.
-
-## Future Enhancements
-
-- **Custom Rewards**: Allow organizers to configure unique rewards for specific events.
-- **User Authentication**: Add personalized profiles for enhanced user experiences.
-- **Advanced Analytics**: Integrate analytics to track user behavior and improve event design.
+## Future Enhancements 🚀
+- **LINE Mini App Expansion**: Expanding the web app into a fully integrated LINE Mini App for seamless user interaction and future scalability.
+- **Backstage development**: Developing a backstage management system, empowering event organizers to update locations and create customized event maps effortlessly.
+- **Advanced Analytics**: Enhance analytics capabilities to track user behavior, optimize engagement, and refine event design.
 
