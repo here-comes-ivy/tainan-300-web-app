@@ -22,11 +22,9 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> _initializeAll() async {
-    await Future.wait([
-      GlobalLiffData.getAllLiffData(),
-      GlobalDBData.getAllDBData(),
-      Future.delayed(const Duration(seconds: 3)),
-    ]);
+    await GlobalLiffData.getAllLiffData();
+    await GlobalDBData.getAllDBData();
+    await Future.delayed(const Duration(seconds: 3));
   }
 
   @override
