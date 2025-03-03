@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'global_variables/globalLiffData.dart';
-import 'components/welcome_message.dart';
 import 'components/redirect_button.dart';
-import 'package:flutter_line_liff/flutter_line_liff.dart';
-import 'package:flutter/services.dart';
 import 'components/warning_card.dart';
 import 'components/pageDetails_card.dart';
+import 'package:explore_tainan_web/global_variables/globalDBData.dart';
 
 class LandingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    String landmarkPictureUrl = GlobalLiffData.landmarkPictureUrl ?? '';
+    String landmarkPictureUrl = GlobalDBData.landmarkPictureUrl ?? '';
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -150,7 +147,7 @@ class LandingPage extends StatelessWidget {
 //                     ),
 //                     Positioned(
 //                       top: MediaQuery.of(context).size.height * 0.3 -
-//                           40, 
+//                           40,
 //                       left: 0,
 //                       right: 0,
 //                       child: Center(

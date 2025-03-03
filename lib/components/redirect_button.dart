@@ -14,7 +14,7 @@ class RedirectButton extends StatefulWidget {
 class _RedirectButtonState extends State<RedirectButton> {
   @override
   Widget build(BuildContext context) {
-    final String password = GlobalLiffData.password ?? '未知密碼';
+    final String password = GlobalDBData.password ?? '未知密碼';
     bool isSendMessage = GlobalLiffData.isSendMessage;
     bool isLandmarkPageShown = GlobalDBData.isLandmarkPageShown;
     FlutterLineLiff flutterLineLiff = FlutterLineLiff.instance;

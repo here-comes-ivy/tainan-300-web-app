@@ -25,15 +25,6 @@ class GlobalLiffData {
 
   static bool friendshipStatus = false;
 
-  static List<Map<String, dynamic>> allLandmarkDetails = [];
-  static Map<String, dynamic> landmarkDetails = {};
-  static String? landmarkName;
-  static String? password;
-  static String? landmarkPictureUrl;
-  static String? landmarkInfoTitle;
-  static String? landmarkInfoDescription;
-
-
   static Future<void> getAllLiffData() async {
     print("Starting Liff data initialization...");
     try {

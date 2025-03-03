@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:explore_tainan_web/global_variables/globalLiffData.dart';
+import 'package:explore_tainan_web/global_variables/globalDBData.dart';
+
 
 class LandmarkMessage extends StatefulWidget {
   const LandmarkMessage({super.key});
@@ -10,10 +12,10 @@ class LandmarkMessage extends StatefulWidget {
 }
 
 class _LandmarkMessageState extends State<LandmarkMessage> {
-  String landmarkInfoTitle = GlobalLiffData.landmarkInfoTitle ?? '地點名稱';
+  String landmarkInfoTitle = GlobalDBData.landmarkInfoTitle ?? '地點名稱';
   String landmarkInfoDescription =
-      GlobalLiffData.landmarkInfoDescription ?? '地點敘述';
-  String password = GlobalLiffData.password ?? '未知密碼';
+      GlobalDBData.landmarkInfoDescription ?? '地點敘述';
+  String password = GlobalDBData.password ?? '未知密碼';
 
   TextStyle boldTextStyle = TextStyle(fontWeight: FontWeight.bold);
 
