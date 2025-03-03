@@ -40498,8 +40498,10 @@ A.Ql.prototype={
 W(a){var s=null,r=A.cQ(a,s,t.w).w,q=A.agb(254,248,227,1),p=A.CH(8),o=A.axM(B.A7,B.b8,s),n=A.ahS(s,s,6)
 return A.age(s,A.aAd(A.a([o,n,A.awV(A.anV("\u82e5\u672a\u8df3\u8f49\u804a\u5929\u5ba4\uff0c\u8acb\u958b\u555f LINE APP \u4e26\u641c\u5c0b\u300c\u53f0\u5357\u5e9c\u57ce 300 LINE \u5b98\u65b9\u5e33\u865f\u300d\u3001\u52a0\u5165\u597d\u53cb\u5f8c\u5373\u53ef\u958b\u59cb\u53c3\u8207\u6d3b\u52d5\uff0c\u5b8c\u6210\u6307\u5b9a\u4efb\u52d9\u5373\u53ef\u7372\u5f97\u734e\u54c1\u548c\u5e97\u5bb6\u512a\u60e0\u5537\uff01",B.i5,A.k9(s,s,B.b8,s,s,s,s,s,s,s,s,14,s,s,s,s,s,!0,s,s,s,s,s,s,s,s),B.cq))],t.af),B.c7,B.ei),B.Q,new A.aJ(0,r.a.a,0,1/0),new A.f8(q,s,s,p,s,s,B.bv),s,s,s,new A.bu(8,10,8,10),s,s,s)}}
 A.JD.prototype={
-W(a){var s=null,r=$.alE
-return A.agd(A.a([B.ye,A.ahX(A.iW(A.a([A.iW(s,B.i6,r==null?"\u533f\u540d\u7528\u6236":r),B.Jn],t.VO),s,"Hello "),s,s),B.Nw,A.ahX(B.Jl,s,s)],t.af),B.bz,B.pv)}}
+W(a){var s=null,r=$.alE,q=A.a([],t.VO)
+if(r!=null&&r.length!==0)q.push(A.iW(s,B.i6,r))
+q.push(B.Jn)
+return A.agd(A.a([B.ye,A.ahX(A.iW(q,s,"Hello "),s,s),B.Nw,A.ahX(B.Jl,s,s)],t.af),B.bz,B.pv)}}
 A.pX.prototype={
 W(a){var s=null,r=t.w,q=A.cQ(a,s,r).w,p=new A.vm(A.aA9(s,s,new A.mm("assets/images/eventMap.jpg",s,s)),B.f1,s),o=t.af
 q=A.agd(A.a([A.ahS(p,q.a.b*0.3,1/0),new A.h6(B.zI,A.agd(A.a([new A.FA(s),B.IG,B.Fi,B.Fj],o),B.bA,B.ei),s)],o),B.bA,B.ei)

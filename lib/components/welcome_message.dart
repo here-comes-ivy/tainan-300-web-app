@@ -6,7 +6,7 @@ import 'package:intl/intl.dart';
 class WelcomingMessage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final userName = GlobalLiffData.userName ?? '匿名用戶';
+    final userName = GlobalLiffData.userName;
 
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -22,10 +22,11 @@ class WelcomingMessage extends StatelessWidget {
           TextSpan(
             text: 'Hello ',
             children: [
-              TextSpan(
-                text: userName,
-                style: const TextStyle(fontWeight: FontWeight.bold),
-              ),
+              if (userName != null && userName.isNotEmpty) 
+                TextSpan(
+                  text: userName,
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
               const TextSpan(text: ' ！'),
             ],
           ),
