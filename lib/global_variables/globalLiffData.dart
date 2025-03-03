@@ -33,9 +33,6 @@ class GlobalLiffData {
   static String? landmarkInfoTitle;
   static String? landmarkInfoDescription;
 
-  static bool isLandmarkPageShown = false;
-
-
 
   static Future<void> getAllLiffData() async {
     print("Starting Liff data initialization...");

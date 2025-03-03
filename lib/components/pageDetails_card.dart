@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:explore_tainan_web/service_liff/globalLiffData.dart';
+import 'package:explore_tainan_web/global_variables/globalDBData.dart';
+
 import 'landmark_message.dart';
 import 'welcome_message.dart';
 
@@ -18,7 +19,7 @@ class LandmarkdetailsCard extends StatelessWidget {
       child: Padding(
         padding:
             const EdgeInsets.only(top: 37, left: 20, right: 20, bottom: 12),
-        child: (GlobalLiffData.isLandmarkPageShown)
+        child: (GlobalDBData.isLandmarkPageShown)
                   ? LandmarkMessage()
                   : WelcomingMessage(),
       ),

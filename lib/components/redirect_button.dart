@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_line_liff/flutter_line_liff.dart';
-import '../../service_liff/globalLiffData.dart';
+import 'package:explore_tainan_web/global_variables/globalLiffData.dart';
+import 'package:explore_tainan_web/global_variables/globalDBData.dart';
 
 class RedirectButton extends StatefulWidget {
   const RedirectButton({super.key});
@@ -15,7 +16,7 @@ class _RedirectButtonState extends State<RedirectButton> {
   Widget build(BuildContext context) {
     final String password = GlobalLiffData.password ?? '未知密碼';
     bool isSendMessage = GlobalLiffData.isSendMessage;
-    bool isLandmarkPageShown = GlobalLiffData.isLandmarkPageShown;
+    bool isLandmarkPageShown = GlobalDBData.isLandmarkPageShown;
     FlutterLineLiff flutterLineLiff = FlutterLineLiff.instance;
     var onPressedRedirect = () async {
       Clipboard.setData(ClipboardData(text: password));

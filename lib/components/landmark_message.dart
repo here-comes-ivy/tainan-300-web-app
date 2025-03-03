@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:explore_tainan_web/service_liff/globalLiffData.dart';
+import 'package:explore_tainan_web/global_variables/globalLiffData.dart';
 
 class LandmarkMessage extends StatefulWidget {
   const LandmarkMessage({super.key});

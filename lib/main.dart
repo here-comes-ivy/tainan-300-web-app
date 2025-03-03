@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_line_liff/flutter_line_liff.dart';
-import 'service_liff/globalLiffData.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'service_firebase/firebase_options.dart';
 import 'splashScreen.dart';
@@ -47,7 +46,6 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    print(GlobalLiffData.landmarkDetails);
     return MaterialApp(
         title: "「一府 x iF」遊城活動打卡",
         theme: ThemeData(

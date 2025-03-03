@@ -20,11 +20,15 @@ class GlobalDBData {
     try {
       await Future.wait([
         getAllLandmarkFromFirestore(),
+      
       ]);
+      print("Executing getAllLandmarkFromFirestore...");
       await Future.wait([
         getSelectedLandmarkData(),
         showLandmarkMessage()
       ]);
+      print("Executing getSelectedLandmarkData...");
+
     } catch (e) {
       print("Error initializing Firestore data: $e");
     }

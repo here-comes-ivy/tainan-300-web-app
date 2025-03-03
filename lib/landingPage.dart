@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'service_liff/globalLiffData.dart';
+import 'global_variables/globalLiffData.dart';
 import 'components/welcome_message.dart';
 import 'components/redirect_button.dart';
 import 'package:flutter_line_liff/flutter_line_liff.dart';

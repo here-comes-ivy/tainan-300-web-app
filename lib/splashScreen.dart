@@ -2,8 +2,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'landingPage.dart';
-import 'service_liff/globalLiffData.dart';
-import 'service_liff/globalDBData.dart';
+import 'global_variables/globalLiffData.dart';
+import 'global_variables/globalDBData.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

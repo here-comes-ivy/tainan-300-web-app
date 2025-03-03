@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../service_liff/globalLiffData.dart';
+import 'package:explore_tainan_web/global_variables/globalLiffData.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
