@@ -25,7 +25,7 @@ class GlobalDBData {
       print("Executing getAllLandmarkFromFirestore...");
       await Future.wait([
         getSelectedLandmarkData(),
-        showLandmarkMessage()
+        //showLandmarkMessage()
       ]);
       print("Executing getSelectedLandmarkData...");
 

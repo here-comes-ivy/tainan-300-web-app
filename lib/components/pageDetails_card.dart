@@ -19,7 +19,7 @@ class LandmarkdetailsCard extends StatelessWidget {
       child: Padding(
         padding:
             const EdgeInsets.only(top: 37, left: 20, right: 20, bottom: 12),
-        child: (GlobalDBData.isLandmarkPageShown)
+        child: (GlobalDBData.landmarkDetails.isNotEmpty)
                   ? LandmarkMessage()
                   : WelcomingMessage(),
       ),

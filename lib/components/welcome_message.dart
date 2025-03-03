@@ -20,13 +20,17 @@ class WelcomingMessage extends StatelessWidget {
         ),
         Text.rich(
           TextSpan(
-            text: 'Hello ',
+            text: 'Hello',
             children: [
-              if (userName != null && userName.isNotEmpty) 
-                TextSpan(
-                  text: userName,
-                  style: const TextStyle(fontWeight: FontWeight.bold),
-                ),
+              if (userName != null && userName.isNotEmpty)
+                TextSpan(children: [
+                  const TextSpan(text: ' '),
+                  TextSpan(
+                    text: userName,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  const TextSpan(text: ' '),
+                ]),
               const TextSpan(text: ' ！'),
             ],
           ),
