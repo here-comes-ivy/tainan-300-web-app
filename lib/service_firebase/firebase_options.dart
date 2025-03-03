@@ -4,6 +4,16 @@ import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
 
+/// Default [FirebaseOptions] for use with your Firebase apps.
+///
+/// Example:
+/// ```dart
+/// import 'firebase_options.dart';
+/// // ...
+/// await Firebase.initializeApp(
+///   options: DefaultFirebaseOptions.currentPlatform,
+/// );
+/// ```
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
@@ -43,13 +53,12 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyA_VD79vOr_4KCSgjHPNRWPOYdX1jDo1_4',
-    appId: '1:378707080323:web:b260332d796bc4bf2617b6',
-    messagingSenderId: '378707080323',
-    projectId: 'explorenowtainan',
-    authDomain: 'explorenowtainan.firebaseapp.com',
-    storageBucket: 'explorenowtainan.firebasestorage.app',
-    measurementId: 'G-36XD97J88D',
+    apiKey: 'AIzaSyAzOwjyhVHsEph5BUQ2ZTEzyc5rmJ-1q14',
+    appId: '1:844416870696:web:7e804929453b7b0aa3081d',
+    messagingSenderId: '844416870696',
+    projectId: 'nannova-tainan300',
+    authDomain: 'nannova-tainan300.firebaseapp.com',
+    storageBucket: 'nannova-tainan300.firebasestorage.app',
+    measurementId: 'G-CZ2EX40Q1H',
   );
-
 }

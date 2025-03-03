@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_line_liff/flutter_line_liff.dart';
-import '../service_firebase/firebase_service.dart';
 import 'dart:html' as html;
 import 'package:flutter/foundation.dart' show kIsWeb;
 
@@ -40,17 +38,12 @@ class GlobalLiffData {
 
 
   static Future<void> getAllLiffData() async {
-    print("Starting data initialization...");
+    print("Starting Liff data initialization...");
     try {
       await Future.wait([
-        getAllLandmarkFromFirestore(),
         getLiffData(),
         getProfileData(),
         getFriendshipData(),
-      ]);
-      await Future.wait([
-        getSelectedLandmarkData(),
-        showLandmarkMessage()
       ]);
       isInitialized = true;
     } catch (e) {
@@ -59,11 +52,6 @@ class GlobalLiffData {
     }
   }
 
-  static Future<void> showLandmarkMessage() async {
-    isLandmarkPageShown = (friendshipStatus && landmarkDetails.isNotEmpty);
-  }
-
-  
   static Future<void> getLiffData() async {
     if (kIsWeb && !isInitialized) {
       await Future.microtask(() {
@@ -103,61 +91,4 @@ class GlobalLiffData {
     }
   }
 
-  static Future<void> getAllLandmarkFromFirestore() async {
-    try {
-      final firebaseService = FirebaseService();
-      allLandmarkDetails =
-          await firebaseService.getAllLandmarkDataFromFirestore();
-    } catch (e) {
-      print('Error getting all landmark data from Firestore: $e');
-    }
-  }
-
-  static Future<void> getSelectedLandmarkData() async {
-    try {
-      if (!isInitialized) {
-        final uri = Uri.parse(html.window.location.href);
-        String? locationSegment;
-        // 取得 landmark uid
-        final pathSegments = uri.pathSegments;
-        print('pathSegments: $pathSegments');
-
-        if (pathSegments.isNotEmpty) {
-          locationSegment = pathSegments.last; // 取得最後一段 path
-        } else {
-          landmarkName = 'Url location';
-        }
-        final sendMessageParam = uri.queryParameters['sendMessage'];
-        isSendMessage = sendMessageParam?.toLowerCase() == 'true';
-
-        print('locationSegment: $locationSegment');
-        print('Should Send Message: $isSendMessage');
-
-        if (locationSegment != null && locationSegment.isNotEmpty) {
-          landmarkDetails = allLandmarkDetails.firstWhere(
-            (landmark) => landmark['id'] == locationSegment,
-            orElse: () => <String, dynamic>{},
-          );
-          if (allLandmarkDetails.isNotEmpty) {
-            landmarkName = landmarkDetails['landmark_name'];
-            password = landmarkDetails['password'];
-
-            landmarkPictureUrl =
-                landmarkDetails['landmark_pictureUrl'].toString();
-            landmarkInfoTitle = landmarkDetails['infoWindow_title'];
-            landmarkInfoDescription = landmarkDetails['infoWindow_snippet'];
-
-            print('Selected Landmark Details: $landmarkDetails');
-          } else {
-            // await getLocationDataFromUrl();
-          }
-        }
-      } else {
-        // await getLocationDataFromUrl();
-      }
-    } catch (e) {
-      print('Error getting the selected location data: $e');
-      // await getLocationDataFromUrl();
-    }
-  }
 }

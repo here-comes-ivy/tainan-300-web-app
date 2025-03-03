@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'landingPage.dart';
 import 'service_liff/globalLiffData.dart';
+import 'service_liff/globalDBData.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -23,7 +24,8 @@ class _SplashScreenState extends State<SplashScreen> {
   Future<void> _initializeAll() async {
     await Future.wait([
       GlobalLiffData.getAllLiffData(),
-      Future.delayed(const Duration(seconds: 5)),
+      GlobalDBData.getAllDBData(),
+      Future.delayed(const Duration(seconds: 3)),
     ]);
   }
 
