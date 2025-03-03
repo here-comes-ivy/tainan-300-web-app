@@ -31,7 +31,7 @@ class WelcomingMessage extends StatelessWidget {
                   ),
                   const TextSpan(text: ' '),
                 ]),
-              const TextSpan(text: ' ！'),
+              const TextSpan(text: '！'),
             ],
           ),
         ),

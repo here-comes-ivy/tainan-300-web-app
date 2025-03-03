@@ -25,7 +25,7 @@ class GlobalDBData {
       print("Executing getAllLandmarkFromFirestore...");
       await Future.wait([
         getSelectedLandmarkData(),
-        //showLandmarkMessage()
+        showLandmarkMessage()
       ]);
       print("Executing getSelectedLandmarkData...");
 
@@ -35,7 +35,9 @@ class GlobalDBData {
   }
 
   static Future<void> showLandmarkMessage() async {
-    isLandmarkPageShown = (GlobalLiffData.friendshipStatus && landmarkDetails.isNotEmpty);
+        isLandmarkPageShown = landmarkDetails.isNotEmpty;
+
+    // Removing for testing purpose: isLandmarkPageShown = (GlobalLiffData.friendshipStatus && landmarkDetails.isNotEmpty);
   }
 
   static Future<void> getAllLandmarkFromFirestore() async {
@@ -50,7 +52,6 @@ class GlobalDBData {
 
   static Future<void> getSelectedLandmarkData() async {
     try {
-      
         final uri = Uri.parse(html.window.location.href);
         String? locationSegment;
         // 取得 landmark uid
