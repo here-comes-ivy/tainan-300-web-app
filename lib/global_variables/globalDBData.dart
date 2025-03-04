@@ -18,16 +18,16 @@ class GlobalDBData {
   static Future<void> getAllDBData() async {
     print("Starting Firestore data initialization...");
     try {
+      print("Executing getAllLandmarkFromFirestore...");
       await Future.wait([
         getAllLandmarkFromFirestore(),
-      
       ]);
-      print("Executing getAllLandmarkFromFirestore...");
+      print("Executing getSelectedLandmarkData...");
       await Future.wait([
         getSelectedLandmarkData(),
         showLandmarkMessage()
       ]);
-      print("Executing getSelectedLandmarkData...");
+      print("getSelectedLandmarkData completed.");
 
     } catch (e) {
       print("Error initializing Firestore data: $e");
@@ -85,7 +85,7 @@ class GlobalDBData {
 
             print('Selected Landmark Details: $landmarkDetails');
           } else {
-            // await getLocationDataFromUrl();
+            print('allLandmarkDetails is empty. allLandmarkDetails: $allLandmarkDetails. Landmark Details: $landmarkDetails');
           }
         }
     } catch (e) {
