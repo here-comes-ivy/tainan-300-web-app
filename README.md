@@ -1,36 +1,43 @@
-# Beyond the Walls - An Interactive Digital Adventure
+# 🎉 Tainan iF 300 Web App
 
-## Welcome to Beyond the Walls!
-Hey there! We’re **NanNova Labs**, an interdisciplinary team passionate about blending **education, technology, and tourism** to bring cultural heritage to life. As Tainan celebrates its **300th anniversary**, we’re thrilled to introduce **Beyond the Walls**—an immersive, interactive digital city tour designed to make history more engaging than ever!
+🚀 **Bringing Tainan's 300th Anniversary to Life with Digital Innovation!**
 
-## Why We Built This 🚀
-Tainan’s rich history isn’t just something to read about—it’s something to **experience**! We wanted to break down the barriers of time and space, allowing **anyone, anywhere** to explore the city’s historic walls, culture, and evolution. With our digital platform, you can:
-- **Walk through history** (virtually or physically!) with an interactive map 🏰
-- **Solve cultural challenges** through fun, gamified activities 🎮
-- **Support local businesses** and discover hidden gems 🏪
-- **Engage with real stories** that shaped Tainan over three centuries 📖
+## 📌 About the Project
+We are a team of three passionate digital geeks collaborating to create a web application for **Tainan iF 300**, an exciting anniversary event happening in May 2025! Our goal is to support a local organization by leveraging **LINE Messaging API** to provide a seamless and interactive experience for tourists visiting historical landmarks.
 
-## What’s Inside? 🔥
-### 🗺️ Interactive Digital Map
-Our map is **your gateway to Tainan’s past and present**, featuring:
-- **Historic Site Comparisons**: Swipe through time with side-by-side old vs. new city views.
-- **Event Hotspots**: Find and join key celebrations of “Tainan 300.”
-- **Local Business Partnerships**: Exclusive offers from cafés, restaurants, and shops that are part of the journey.
+## 🎯 Key Features
+- 🏛️ **QR Code Check-ins**: Tourists scan QR codes at designated landmarks to receive a unique passcode.
+- 💬 **LINE Integration**: Users receive their passcodes directly via the organization's **LINE Official Account**.
+- 🎟️ **Point & Coupon Collection**: Passcodes can be used to redeem **points and exclusive coupons** within the LINE app.
+- 🌍 **Enhancing Cultural Engagement**: Encouraging visitors to explore and interact with Tainan's rich history through a gamified experience.
 
-### 🎯 Cultural Mini-Games
-Get hands-on with **interactive challenges**, quizzes, and exploration missions that test your knowledge and deepen your connection to Tainan’s history.
+## 🛠️ Tech Stack
+- **Frontend**: Flutter Web
+- **Backend**: Firebase (Cloud Functions, Firestore, Storage)
+- **API**: LINE Messaging API
+- **Deployment**: Cloudflare
 
-### 🌍 Hybrid Onsite & Online Experience
-Join a **physical tour** or explore **digitally from anywhere**. Whether you’re in Tainan or across the world, **you’re part of the story**!
+## 📅 Timeline
+- **March 2025**: Beta testing with limited users
+- **April 2025**: Final refinements & official launch preparations
+- **May 2025**: 🎊 **Official launch during Tainan iF 300 event!**
 
-## Tech Stack 🛠️
-- **Frontend**: Flutter Web App hosted on Cloudflare Hosting
-- **Backend**: Firebase, Apps Script
-- **Platform**: Google Maps API, LINE Messaging API, LINE LIFF
-- **Database**: Firebase
+## 👀 Sneak Peek
+<table>
+  <tr>
+    <td><img src="readme_images/welcomePage.PNG" width="200"></td>
+    <td><img src="readme_images/demoLandmarkPage.PNG" width="200"></td>
+    <td><img src="readme_images/demo.gif" width="200"></td>
+  </tr>
+</table>
 
-## Future Enhancements 🚀
-- **LINE Mini App Expansion**: Expanding the web app into a fully integrated LINE Mini App for seamless user interaction and future scalability.
-- **Backstage development**: Developing a backstage management system, empowering event organizers to update locations and create customized event maps effortlessly.
-- **Advanced Analytics**: Enhance analytics capabilities to track user behavior, optimize engagement, and refine event design.
 
+## 🤝 Contributors
+- **@here-comes-ivy** – Frontend Developer & API Integration
+- **@Singyuliu** – Product Design & Management
+- **@jcl77777** – Business Strategy & Development
+
+---
+
+
+Stay tuned for updates as we bring this project to life! 🎊🥳
