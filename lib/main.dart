@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_line_liff/flutter_line_liff.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'service_firebase/firebase_options.dart';
 import 'splashScreen.dart';
@@ -10,23 +9,6 @@ void main() async {
   ).then(
     (value) => print('Firebase initialized.'),
   );
-
-  // try {
-  //   await FlutterLineLiff.instance.init(
-  //     config: Config(liffId: '2006821126-aW8ojkoN'),
-  //     successCallback: () {
-  //       debugPrint('LIFF init success.');
-  //     },
-  //     errorCallback: (error) {
-  //       debugPrint('LIFF init error: $error');
-  //     },
-  //   );
-  //   await FlutterLineLiff.instance.ready;
-  //   print('LIFF is ready.');
-    
-  // } catch (e) {
-  //   debugPrint('Initialization error: $e');
-  // }
 
   runApp(MyApp());
 }
