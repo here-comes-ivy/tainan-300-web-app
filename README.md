@@ -33,7 +33,7 @@ We are a team of three passionate digital geeks collaborating to create a web ap
 
 
 ## 🤝 Contributors
-- **@here-comes-ivy** – Frontend Developer & API Integration
+- **@here-comes-ivy** – App Developer & API Integration
 - **@Singyuliu** – Product Design & Management
 - **@jcl77777** – Business Strategy & Development
 
