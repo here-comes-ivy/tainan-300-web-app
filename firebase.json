@@ -1,1 +1,0 @@
-{"hosting":{"public":"build/web","ignore":["firebase.json","**/.*","**/node_modules/**"],"rewrites":[{"source":"**","destination":"/index.html"}]},"flutter":{"platforms":{"dart":{"lib/firebase_options.dart":{"projectId":"nannova-tainan300","configurations":{"web":"1:844416870696:web:7e804929453b7b0aa3081d"}}}}}}
