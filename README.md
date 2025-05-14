@@ -1,9 +1,9 @@
-# 🎉 Tainan 300 Web App
+# 🎉 Tainan Fucheng 300 Web App
 
 🚀 **Bringing Tainan's 300th Anniversary to Life with Digital Innovation!**
 
 ## 📌 About the Project
-We are a team of three passionate digital geeks collaborating to create a web application for **Tainan 300**, an exciting anniversary event happening in May 2025! Our goal is to support a local organization by leveraging **LINE Messaging API** to provide a seamless and interactive experience for tourists visiting historical landmarks.
+We are a team of three passionate digital geeks collaborating to create a web application for **Tainan Fucheng 300**, an exciting anniversary event happening in May 2025! Our goal is to support a local organization by leveraging **LINE Messaging API** to provide a seamless and interactive experience for tourists visiting historical landmarks.
 
 ## 🎯 Key Features
 - 🏛️ **QR Code Check-ins**: Tourists scan QR codes at designated landmarks to receive a unique passcode.
@@ -20,7 +20,7 @@ We are a team of three passionate digital geeks collaborating to create a web ap
 ## 📅 Timeline
 - **March 2025**: Beta testing with limited users
 - **April 2025**: Final refinements & official launch preparations
-- **May 2025**: 🎊 **Official launch during Tainan 300 event!**
+- **May 2025**: 🎊 **Official launch during Tainan Fucheng 300 event!**
 
 ## 👀 Sneak Peek
 <table>
