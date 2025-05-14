@@ -25,9 +25,9 @@ We are a team of three passionate digital geeks collaborating to create a web ap
 ## 👀 Sneak Peek
 <table>
   <tr>
-    <td><img src="readme_images/welcomePage.PNG" width="200"></td>
-    <td><img src="readme_images/demoLandmarkPage.PNG" width="200"></td>
-    <td><img src="readme_images/demo.gif" width="200"></td>
+    <td><img src="readme_images/welcomePage.png" width="200"></td>
+    <td><img src="readme_images/demoLandmarkPage.png" width="200"></td>
+    <td><img src="readme_images/demoVideo.gif" width="200"></td>
   </tr>
 </table>
 
