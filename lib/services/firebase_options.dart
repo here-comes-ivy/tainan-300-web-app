@@ -52,13 +52,4 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyAzOwjyhVHsEph5BUQ2ZTEzyc5rmJ-1q14',
-    appId: '1:844416870696:web:7e804929453b7b0aa3081d',
-    messagingSenderId: '844416870696',
-    projectId: 'nannova-tainan300',
-    authDomain: 'nannova-tainan300.firebaseapp.com',
-    storageBucket: 'nannova-tainan300.firebasestorage.app',
-    measurementId: 'G-CZ2EX40Q1H',
-  );
 }
