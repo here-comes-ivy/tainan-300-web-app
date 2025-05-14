@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_line_liff/flutter_line_liff.dart';
-import 'package:explore_tainan_web/global_variables/globalLiffData.dart';
-import 'package:explore_tainan_web/global_variables/globalDBData.dart';
+import '../constants/landmarkData.dart';
+import 'package:url_launcher/url_launcher.dart';
+import '../services/analyticsProvider.dart';
+import 'package:provider/provider.dart';
 
 class RedirectButton extends StatefulWidget {
   const RedirectButton({super.key});
@@ -14,44 +15,19 @@ class RedirectButton extends StatefulWidget {
 class _RedirectButtonState extends State<RedirectButton> {
   @override
   Widget build(BuildContext context) {
-    final String password = GlobalDBData.password ?? '未知密碼';
-    bool isSendMessage = GlobalLiffData.isSendMessage;
-    bool isLandmarkPageShown = GlobalDBData.isLandmarkPageShown;
-    FlutterLineLiff flutterLineLiff = FlutterLineLiff.instance;
+    final String password = LandmarkData.password ?? '未知密碼';
+    const String url = 'https://line.me/R/ti/p/@985xszkh';
     var onPressedRedirect = () async {
-      Clipboard.setData(ClipboardData(text: password));
-      flutterLineLiff.openWindow(
-        params: OpenWindowParams(
-          url: 'https://line.me/R/ti/p/%40608iawcf#~',
-          external: false,
-        ),
-      );
-    };
+      await Clipboard.setData(ClipboardData(text: password));
 
-    var onPressedSendMessage = () async {
-      String getError = '';
-      bool success;
-      try {
-        await flutterLineLiff.sendMessages(messages: [
-          TextMessage(text: password),
-        ]);
-        success = true;
-      } catch (e) {
-        print('Error sending user message: $e');
-        getError = e.toString();
-        success = false;
+      if (await canLaunchUrl(Uri.parse(url))) {
+        await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
+      } else {
+        throw '無法開啟連結 $url';
       }
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            success ? '成功送出通關密語！' : '無法送出訊息: $getError',
-          ),
-          backgroundColor: success ? Colors.green : Colors.red,
-          duration: const Duration(seconds: 2),
-        ),
-      );
-      // await Future.delayed(const Duration(seconds: 2));
-      // FlutterLineLiff().closeWindow();
+
+      await Provider.of<AnalyticsProvider>(context, listen: false)
+          .logExternalLinkClicked(url);
     };
 
     return ElevatedButton(
@@ -62,11 +38,10 @@ class _RedirectButtonState extends State<RedirectButton> {
           borderRadius: BorderRadius.circular(6),
         ),
       ),
-      onPressed: isSendMessage && isLandmarkPageShown? onPressedSendMessage : onPressedRedirect,
+      onPressed: onPressedRedirect,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 14),
-        child: Text(
-            isSendMessage && isLandmarkPageShown? '傳送通關密語' : '前往 LINE 官方帳號',
+        child: Text('前往 LINE 官方帳號',
             style: TextStyle(
                 fontSize: 14,
                 overflow: TextOverflow.visible,
